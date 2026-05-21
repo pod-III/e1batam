@@ -144,10 +144,15 @@
                 </div>
             </div>
             
-            <button onclick="toggleTheme()" class="btn-neo bg-white dark:bg-slate-800 dark:text-white px-3 md:px-4 py-1.5 md:py-2 text-sm flex items-center gap-2 shrink-0">
-                <i data-lucide="moon" class="w-4 h-4 dark:hidden"></i>
-                <i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i>
-            </button>
+            <div class="flex items-center gap-2 shrink-0">
+                <button onclick="openBackupModal()" class="btn-neo bg-white dark:bg-slate-800 dark:text-white px-3 md:px-4 py-1.5 md:py-2 text-sm flex items-center gap-2">
+                    <i data-lucide="save" class="w-4 h-4"></i>
+                </button>
+                <button onclick="toggleTheme()" class="btn-neo bg-white dark:bg-slate-800 dark:text-white px-3 md:px-4 py-1.5 md:py-2 text-sm flex items-center gap-2">
+                    <i data-lucide="moon" class="w-4 h-4 dark:hidden"></i>
+                    <i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -252,9 +257,14 @@
             <div class="w-full card-neo p-4 md:p-6 bg-white dark:bg-slate-800 flex flex-col h-[40vh] md:h-[45vh] shrink-0 mb-4">
                 <div class="flex justify-between items-center mb-4 shrink-0">
                     <h2 class="font-heading font-bold text-lg md:text-2xl">Saved Slides</h2>
-                    <button onclick="openTopicModal()" class="btn-neo bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 px-3 py-1.5 md:px-4 md:py-2 text-xs md:text-sm flex items-center gap-1 hover:bg-slate-200">
-                        <i data-lucide="plus" class="w-3.5 h-3.5 md:w-4 md:h-4"></i> Add Slide
-                    </button>
+                    <div class="flex gap-2">
+                        <button onclick="toggleTopicVisibility()" id="toggleVisibilityBtn" class="btn-neo bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 px-3 py-1.5 md:px-4 md:py-2 text-xs md:text-sm flex items-center gap-1 hover:bg-slate-200">
+                            <i data-lucide="eye" class="w-3.5 h-3.5 md:w-4 md:h-4"></i> <span class="hidden sm:inline">Show</span>
+                        </button>
+                        <button onclick="openTopicModal()" class="btn-neo bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 px-3 py-1.5 md:px-4 md:py-2 text-xs md:text-sm flex items-center gap-1 hover:bg-slate-200">
+                            <i data-lucide="plus" class="w-3.5 h-3.5 md:w-4 md:h-4"></i> Add Slide
+                        </button>
+                    </div>
                 </div>
                 <div id="slideList" class="flex flex-col gap-2 overflow-y-auto pr-2 pb-2 h-full">
                     <!-- Slides injected here -->
@@ -343,6 +353,29 @@
         </div>
     </div>
 
+    <!-- Backup & Restore Modal -->
+    <div id="backupModal" class="hidden fixed inset-0 z-[60] flex items-center justify-center modal-overlay p-4">
+        <div class="card-neo p-6 md:p-8 max-w-sm w-full bg-white dark:bg-slate-800 animate-pop flex flex-col gap-6 text-center">
+            <div>
+                <h3 class="font-heading font-bold text-2xl mb-1">Backup & Restore</h3>
+                <p class="text-sm text-slate-500 dark:text-slate-400 font-semibold">Save your categories, slides, and timer settings to a file.</p>
+            </div>
+
+            <div class="flex flex-col gap-3">
+                <button onclick="exportData()" class="w-full btn-neo bg-brand-blue text-white py-3 md:py-4 flex items-center justify-center gap-2 hover:bg-blue-600">
+                    <i data-lucide="download" class="w-5 h-5"></i> Export Backup (JSON)
+                </button>
+                
+                <label class="w-full btn-neo bg-brand-orange text-white py-3 md:py-4 flex items-center justify-center gap-2 hover:bg-orange-600 cursor-pointer">
+                    <i data-lucide="upload" class="w-5 h-5"></i> Import Backup (JSON)
+                    <input type="file" id="importFileInput" accept=".json" class="hidden" onchange="importData(event)">
+                </label>
+            </div>
+
+            <button onclick="closeBackupModal()" class="btn-neo bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 py-3 hover:bg-slate-300">Close</button>
+        </div>
+    </div>
+
     <!-- Presentation Overlay -->
     <div id="presentationOverlay" class="hidden fixed inset-0 z-[70] bg-brand-dark dark:bg-slate-900 text-white flex flex-col items-center justify-center p-8 md:p-24 text-center overflow-hidden">
         
@@ -388,6 +421,69 @@
                 const btn = document.getElementById('tabBtn' + t.charAt(0).toUpperCase() + t.slice(1));
                 if (btn) btn.className = tab === t ? activeClass : inactiveClass;
             });
+        }
+
+        // --- BACKUP & RESTORE LOGIC ---
+        function openBackupModal() {
+            document.getElementById('backupModal').classList.remove('hidden');
+        }
+
+        function closeBackupModal() {
+            document.getElementById('backupModal').classList.add('hidden');
+        }
+
+        function exportData() {
+            const data = {};
+            // Loop through all localStorage items and only grab ours
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (key && key.startsWith('speech_')) {
+                    data[key] = localStorage.getItem(key);
+                }
+            }
+            
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `speech_backup_${new Date().toISOString().slice(0,10)}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            showToast('Backup downloaded successfully!');
+            closeBackupModal();
+        }
+
+        function importData(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    let importedCount = 0;
+                    
+                    for (const key in data) {
+                        if (key.startsWith('speech_')) {
+                            localStorage.setItem(key, data[key]);
+                            importedCount++;
+                        }
+                    }
+                    
+                    if (importedCount > 0) {
+                        showToast('Backup restored successfully! Reloading...');
+                        setTimeout(() => location.reload(), 1000);
+                    } else {
+                        showToast('No compatible data found in file.', true);
+                    }
+                } catch (err) {
+                    showToast('Invalid backup file!', true);
+                }
+            };
+            reader.readAsText(file);
+            // Reset input so the same file can be selected again if needed
+            event.target.value = '';
         }
 
         // --- TIMER LOGIC (COUNT UP) ---
@@ -610,6 +706,12 @@
         // --- SLIDES LOGIC (TOPIC TAB) ---
         let savedSlides = [];
         let currentPresentationIndex = -1;
+        let isTopicListVisible = false;
+
+        function toggleTopicVisibility() {
+            isTopicListVisible = !isTopicListVisible;
+            renderSlides();
+        }
 
         function loadSlides() {
             try {
@@ -663,7 +765,15 @@
             const container = document.getElementById('slideList');
             const mainBtn = document.getElementById('mainShowTopicBtn');
             const warning = document.getElementById('noTopicWarning');
+            const visibilityBtn = document.getElementById('toggleVisibilityBtn');
+            
             if(!container) return;
+            
+            if(visibilityBtn) {
+                visibilityBtn.innerHTML = isTopicListVisible 
+                    ? '<i data-lucide="eye-off" class="w-3.5 h-3.5 md:w-4 md:h-4"></i> <span class="hidden sm:inline">Hide</span>'
+                    : '<i data-lucide="eye" class="w-3.5 h-3.5 md:w-4 md:h-4"></i> <span class="hidden sm:inline">Show</span>';
+            }
             
             container.innerHTML = '';
             
@@ -671,6 +781,7 @@
                 container.innerHTML = '<div class="text-slate-400 text-sm italic py-4">No slides saved yet. Click "Add Slide" above!</div>';
                 mainBtn.classList.add('opacity-50', 'cursor-not-allowed', 'pointer-events-none');
                 warning.classList.remove('hidden');
+                if(window.lucide) lucide.createIcons();
                 return;
             }
 
@@ -681,10 +792,13 @@
             savedSlides.forEach((slide, index) => {
                 const el = document.createElement('div');
                 el.className = 'border-2 border-brand-dark dark:border-slate-600 rounded-xl p-3 flex flex-row items-center justify-between gap-4 bg-slate-50 dark:bg-slate-700/50 shrink-0';
+                
+                const displayMotion = isTopicListVisible ? escapeHtml(slide.motion || '') : '<span class="text-slate-400 dark:text-slate-500 tracking-widest text-lg md:text-xl">••••••••••••••••••••</span>';
+
                 el.innerHTML = `
                     <div class="flex-1 min-w-0">
                         ${slide.header ? `<div class="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-wider mb-0.5">${escapeHtml(slide.header)}</div>` : ''}
-                        <div class="font-heading font-bold text-sm md:text-base text-brand-blue truncate">${escapeHtml(slide.motion || '')}</div>
+                        <div class="font-heading font-bold text-sm md:text-base text-brand-blue truncate">${displayMotion}</div>
                     </div>
                     <div class="flex gap-1.5 shrink-0">
                         <button onclick="presentSlideByIndex(${index})" class="btn-neo bg-brand-green text-white w-8 h-8 flex items-center justify-center hover:bg-green-500 p-0"><i data-lucide="play" class="w-4 h-4 fill-current"></i></button>
