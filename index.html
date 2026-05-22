@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,9 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
 
     <script>
         tailwind.config = {
@@ -35,28 +38,42 @@
             background: white;
             border: 3px solid #1e293b;
             border-radius: 1.5rem;
-            box-shadow: 4px 4px 0px 0px rgba(30,41,59,1);
+            box-shadow: 4px 4px 0px 0px rgba(30, 41, 59, 1);
         }
+
         .dark .card-neo {
             background: #1e293b;
             border-color: #64748b;
             box-shadow: 4px 4px 0px 0px #64748b;
         }
+
         .btn-neo {
             font-family: 'Fredoka', sans-serif;
             font-weight: 700;
             border: 3px solid #1e293b;
             border-radius: 0.75rem;
-            box-shadow: 4px 4px 0px 0px rgba(30,41,59,1);
+            box-shadow: 4px 4px 0px 0px rgba(30, 41, 59, 1);
             transition: all .1s ease;
         }
+
         .dark .btn-neo {
             border-color: #64748b;
             box-shadow: 4px 4px 0px 0px #64748b;
         }
-        .btn-neo:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0px 0px rgba(30,41,59,1); }
-        .dark .btn-neo:hover { box-shadow: 6px 6px 0px 0px #64748b; }
-        .btn-neo:active { transform: translate(4px,4px); box-shadow: 0 0 0 0 transparent; }
+
+        .btn-neo:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px 0px rgba(30, 41, 59, 1);
+        }
+
+        .dark .btn-neo:hover {
+            box-shadow: 6px 6px 0px 0px #64748b;
+        }
+
+        .btn-neo:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0 0 0 0 transparent;
+        }
 
         .input-neo {
             background: #f8fafc;
@@ -69,18 +86,49 @@
             resize: none;
             width: 100%;
         }
-        .dark .input-neo { background: #0f172a; border-color: #64748b; color: #f8fafc; }
-        .input-neo:focus { outline: none; background: white; box-shadow: 4px 4px 0px 0px #2979FF; border-color: #2979FF; }
-        .dark .input-neo:focus { background: #1e293b; }
+
+        .dark .input-neo {
+            background: #0f172a;
+            border-color: #64748b;
+            color: #f8fafc;
+        }
+
+        .input-neo:focus {
+            outline: none;
+            background: white;
+            box-shadow: 4px 4px 0px 0px #2979FF;
+            border-color: #2979FF;
+        }
+
+        .dark .input-neo:focus {
+            background: #1e293b;
+        }
 
         @keyframes popIn {
-            0% { transform: scale(0.6) translateY(-30px); opacity: 0; }
-            60% { transform: scale(1.02) translateY(5px); opacity: 1; }
-            100% { transform: scale(1) translateY(0); opacity: 1; }
+            0% {
+                transform: scale(0.6) translateY(-30px);
+                opacity: 0;
+            }
+
+            60% {
+                transform: scale(1.02) translateY(5px);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
         }
-        .animate-pop-big { animation: popIn .4s cubic-bezier(.175,.885,.32,1.275) forwards; }
-        .animate-pop { animation: popIn .3s cubic-bezier(.175,.885,.32,1.275) forwards; }
-        
+
+        .animate-pop-big {
+            animation: popIn .4s cubic-bezier(.175, .885, .32, 1.275) forwards;
+        }
+
+        .animate-pop {
+            animation: popIn .3s cubic-bezier(.175, .885, .32, 1.275) forwards;
+        }
+
         /* Modal Overlay Background */
         .modal-overlay {
             background-color: rgba(15, 23, 42, 0.7);
@@ -88,30 +136,104 @@
         }
 
         @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
-            20%, 40%, 60%, 80% { transform: translateX(10px); }
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            10%,
+            30%,
+            50%,
+            70%,
+            90% {
+                transform: translateX(-10px);
+            }
+
+            20%,
+            40%,
+            60%,
+            80% {
+                transform: translateX(10px);
+            }
         }
+
         .animate-shake {
             animation: shake 0.5s ease-in-out infinite;
         }
 
         /* Presentation Slide Animations */
-        @keyframes slideOutLeft { to { transform: translateX(-100px); opacity: 0; } }
-        @keyframes slideOutRight { to { transform: translateX(100px); opacity: 0; } }
-        @keyframes slideInRight { from { transform: translateX(100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-        @keyframes slideInLeft { from { transform: translateX(-100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-        
-        .slide-out-left { animation: slideOutLeft 0.25s ease-in forwards; }
-        .slide-out-right { animation: slideOutRight 0.25s ease-in forwards; }
-        .slide-in-right { animation: slideInRight 0.25s ease-out forwards; }
-        .slide-in-left { animation: slideInLeft 0.25s ease-out forwards; }
+        @keyframes slideOutLeft {
+            to {
+                transform: translateX(-100px);
+                opacity: 0;
+            }
+        }
+
+        @keyframes slideOutRight {
+            to {
+                transform: translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-100px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .slide-out-left {
+            animation: slideOutLeft 0.25s ease-in forwards;
+        }
+
+        .slide-out-right {
+            animation: slideOutRight 0.25s ease-in forwards;
+        }
+
+        .slide-in-right {
+            animation: slideInRight 0.25s ease-out forwards;
+        }
+
+        .slide-in-left {
+            animation: slideInLeft 0.25s ease-out forwards;
+        }
 
         /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-        .dark ::-webkit-scrollbar-thumb { background: #475569; }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        .dark ::-webkit-scrollbar-thumb {
+            background: #475569;
+        }
     </style>
 
     <script>
@@ -121,34 +243,41 @@
         }
     </script>
 </head>
-<body class="h-screen bg-brand-chalk dark:bg-slate-900 text-brand-dark dark:text-white transition-colors duration-300 font-body flex flex-col overflow-hidden">
+
+<body
+    class="h-screen bg-brand-chalk dark:bg-slate-900 text-brand-dark dark:text-white transition-colors duration-300 font-body flex flex-col overflow-hidden">
 
     <header class="w-full bg-white dark:bg-slate-800 border-b-3 border-brand-dark dark:border-slate-500 shrink-0 z-40">
         <div class="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between gap-4">
             <div class="flex items-center gap-4 min-w-0">
-                <div class="hidden md:flex bg-brand-blue border-3 border-brand-dark dark:border-slate-500 w-12 h-12 rounded-xl items-center justify-center text-white shadow-neo-sm transform -rotate-3 shrink-0">
+                <div
+                    class="hidden md:flex bg-brand-blue border-3 border-brand-dark dark:border-slate-500 w-12 h-12 rounded-xl items-center justify-center text-white shadow-neo-sm transform -rotate-3 shrink-0">
                     <i data-lucide="mic-2" class="w-7 h-7 stroke-[2.5px]"></i>
                 </div>
-                
-                <!-- Tabs -->
+
                 <div class="flex gap-2">
-                    <button onclick="switchTab('order')" id="tabBtnOrder" class="btn-neo bg-brand-blue text-white px-3 md:px-4 py-1.5 md:py-2 text-sm md:text-base whitespace-nowrap">
+                    <button onclick="switchTab('order')" id="tabBtnOrder"
+                        class="btn-neo bg-brand-blue text-white px-3 md:px-4 py-1.5 md:py-2 text-sm md:text-base whitespace-nowrap">
                         <i data-lucide="users" class="w-4 h-4 inline-block mr-1"></i> Categories
                     </button>
-                    <button onclick="switchTab('timer')" id="tabBtnTimer" class="btn-neo bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-3 md:px-4 py-1.5 md:py-2 text-sm md:text-base whitespace-nowrap">
+                    <button onclick="switchTab('timer')" id="tabBtnTimer"
+                        class="btn-neo bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-3 md:px-4 py-1.5 md:py-2 text-sm md:text-base whitespace-nowrap">
                         <i data-lucide="timer" class="w-4 h-4 inline-block mr-1"></i> Timer
                     </button>
-                    <button onclick="switchTab('topic')" id="tabBtnTopic" class="btn-neo bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-3 md:px-4 py-1.5 md:py-2 text-sm md:text-base whitespace-nowrap">
+                    <button onclick="switchTab('topic')" id="tabBtnTopic"
+                        class="btn-neo bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-3 md:px-4 py-1.5 md:py-2 text-sm md:text-base whitespace-nowrap">
                         <i data-lucide="monitor-play" class="w-4 h-4 inline-block mr-1"></i> Topic
                     </button>
                 </div>
             </div>
-            
+
             <div class="flex items-center gap-2 shrink-0">
-                <button onclick="openBackupModal()" class="btn-neo bg-white dark:bg-slate-800 dark:text-white px-3 md:px-4 py-1.5 md:py-2 text-sm flex items-center gap-2">
+                <button onclick="openBackupModal()"
+                    class="btn-neo bg-white dark:bg-slate-800 dark:text-white px-3 md:px-4 py-1.5 md:py-2 text-sm flex items-center gap-2">
                     <i data-lucide="save" class="w-4 h-4"></i>
                 </button>
-                <button onclick="toggleTheme()" class="btn-neo bg-white dark:bg-slate-800 dark:text-white px-3 md:px-4 py-1.5 md:py-2 text-sm flex items-center gap-2">
+                <button onclick="toggleTheme()"
+                    class="btn-neo bg-white dark:bg-slate-800 dark:text-white px-3 md:px-4 py-1.5 md:py-2 text-sm flex items-center gap-2">
                     <i data-lucide="moon" class="w-4 h-4 dark:hidden"></i>
                     <i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i>
                 </button>
@@ -158,82 +287,90 @@
 
     <main class="flex-1 overflow-y-auto max-w-7xl w-full mx-auto px-4 md:px-6 py-4 md:py-6 h-full">
 
-        <!-- ==================== TAB: SPEAKER CATEGORIES ==================== -->
         <div id="viewOrder" class="block h-full">
-            <!-- INPUT STAGE -->
             <div id="inputStage" class="w-full animate-pop flex flex-col h-full">
                 <div class="flex justify-between items-end mb-4 shrink-0">
                     <div>
                         <h2 class="font-heading font-bold text-xl md:text-3xl">Speaker Categories</h2>
-                        <p class="text-slate-500 dark:text-slate-400 font-semibold mt-0.5 text-xs md:text-sm">Enter names for up to three different groups.</p>
+                        <p class="text-slate-500 dark:text-slate-400 font-semibold mt-0.5 text-xs md:text-sm">Enter
+                            names for up to three different groups.</p>
                     </div>
-                    <button onclick="loadDemo()" class="btn-neo bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-3 py-1.5 text-xs hidden md:block">Load Demo</button>
+                    <button onclick="loadDemo()"
+                        class="btn-neo bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-3 py-1.5 text-xs hidden md:block">Load
+                        Demo</button>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 flex-1 min-h-[250px] mb-4">
-                    <!-- Category 1 -->
                     <div class="card-neo p-3 md:p-5 bg-white dark:bg-slate-800 flex flex-col">
-                        <input type="text" id="cat1Name" value="Category A (SD)" class="w-full font-heading font-bold text-base md:text-xl mb-2 bg-transparent border-b-2 border-dashed border-slate-300 dark:border-slate-600 focus:outline-none focus:border-brand-blue shrink-0" />
-                        <textarea id="cat1Input" class="input-neo flex-1 text-sm md:text-base leading-relaxed resize-none p-2 md:p-4" placeholder="Alice&#10;Bob&#10;Charlie"></textarea>
+                        <input type="text" id="cat1Name" value="Category A (SD)"
+                            class="w-full font-heading font-bold text-base md:text-xl mb-2 bg-transparent border-b-2 border-dashed border-slate-300 dark:border-slate-600 focus:outline-none focus:border-brand-blue shrink-0" />
+                        <textarea id="cat1Input"
+                            class="input-neo flex-1 text-sm md:text-base leading-relaxed resize-none p-2 md:p-4"
+                            placeholder="Alice&#10;Bob&#10;Charlie"></textarea>
                     </div>
-                    <!-- Category 2 -->
                     <div class="card-neo p-3 md:p-5 bg-white dark:bg-slate-800 flex flex-col">
-                        <input type="text" id="cat2Name" value="Category B (SMP)" class="w-full font-heading font-bold text-base md:text-xl mb-2 bg-transparent border-b-2 border-dashed border-slate-300 dark:border-slate-600 focus:outline-none focus:border-brand-orange shrink-0" />
-                        <textarea id="cat2Input" class="input-neo flex-1 text-sm md:text-base leading-relaxed resize-none p-2 md:p-4" placeholder="David&#10;Eve&#10;Frank"></textarea>
+                        <input type="text" id="cat2Name" value="Category B (SMP)"
+                            class="w-full font-heading font-bold text-base md:text-xl mb-2 bg-transparent border-b-2 border-dashed border-slate-300 dark:border-slate-600 focus:outline-none focus:border-brand-orange shrink-0" />
+                        <textarea id="cat2Input"
+                            class="input-neo flex-1 text-sm md:text-base leading-relaxed resize-none p-2 md:p-4"
+                            placeholder="David&#10;Eve&#10;Frank"></textarea>
                     </div>
-                    <!-- Category 3 -->
                     <div class="card-neo p-3 md:p-5 bg-white dark:bg-slate-800 flex flex-col">
-                        <input type="text" id="cat3Name" value="Category C (SMA)" class="w-full font-heading font-bold text-base md:text-xl mb-2 bg-transparent border-b-2 border-dashed border-slate-300 dark:border-slate-600 focus:outline-none focus:border-brand-green shrink-0" />
-                        <textarea id="cat3Input" class="input-neo flex-1 text-sm md:text-base leading-relaxed resize-none p-2 md:p-4" placeholder="Grace&#10;Heidi&#10;Ivan"></textarea>
+                        <input type="text" id="cat3Name" value="Category C (SMA)"
+                            class="w-full font-heading font-bold text-base md:text-xl mb-2 bg-transparent border-b-2 border-dashed border-slate-300 dark:border-slate-600 focus:outline-none focus:border-brand-green shrink-0" />
+                        <textarea id="cat3Input"
+                            class="input-neo flex-1 text-sm md:text-base leading-relaxed resize-none p-2 md:p-4"
+                            placeholder="Grace&#10;Heidi&#10;Ivan"></textarea>
                     </div>
                 </div>
 
                 <div class="flex justify-center max-w-sm mx-auto shrink-0 pb-4">
-                    <button onclick="startReveal()" class="w-full btn-neo bg-brand-blue text-white py-3 text-lg md:text-xl tracking-wide flex items-center justify-center gap-2 hover:bg-blue-600">
+                    <button onclick="startReveal()"
+                        class="w-full btn-neo bg-brand-blue text-white py-3 text-lg md:text-xl tracking-wide flex items-center justify-center gap-2 hover:bg-blue-600">
                         <i data-lucide="shuffle" class="w-5 h-5 md:w-6 md:h-6 stroke-[2.5px]"></i> RANDOMIZE GROUPS
                     </button>
                 </div>
             </div>
 
-            <!-- REVEAL STAGE -->
             <div id="revealStage" class="hidden w-full h-full flex flex-col">
                 <div class="flex items-center justify-between mb-4 shrink-0">
                     <div class="flex items-center gap-3">
-                        <div class="bg-brand-dark dark:bg-slate-700 text-white font-heading font-bold px-3 py-1.5 md:px-4 md:py-2 rounded-lg border-2 border-brand-dark dark:border-slate-500 text-xs md:text-sm">
+                        <div
+                            class="bg-brand-dark dark:bg-slate-700 text-white font-heading font-bold px-3 py-1.5 md:px-4 md:py-2 rounded-lg border-2 border-brand-dark dark:border-slate-500 text-xs md:text-sm">
                             Total Participants: <span id="totalCount">0</span>
                         </div>
                     </div>
                     <div class="flex items-center gap-2">
-                        <button onclick="copyResults()" class="btn-neo bg-brand-blue text-white px-3 md:px-4 py-1.5 md:py-2 text-xs md:text-sm flex items-center gap-2">
+                        <button onclick="copyResults()"
+                            class="btn-neo bg-brand-blue text-white px-3 md:px-4 py-1.5 md:py-2 text-xs md:text-sm flex items-center gap-2">
                             <i data-lucide="copy" class="w-4 h-4"></i> <span class="hidden sm:inline">Copy</span>
                         </button>
-                        <button onclick="resetAll()" class="btn-neo bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-3 md:px-4 py-1.5 md:py-2 text-xs md:text-sm flex items-center gap-2">
-                            <i data-lucide="rotate-ccw" class="w-4 h-4"></i> <span class="hidden sm:inline">Edit Lists</span>
+                        <button onclick="resetAll()"
+                            class="btn-neo bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-3 md:px-4 py-1.5 md:py-2 text-xs md:text-sm flex items-center gap-2">
+                            <i data-lucide="rotate-ccw" class="w-4 h-4"></i> <span class="hidden sm:inline">Edit
+                                Lists</span>
                         </button>
                     </div>
                 </div>
 
-                <!-- 3 Columns for Results (Optimized for 10+ items on Chromebook Screen) -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 flex-1 min-h-[300px] pb-2">
-                    <!-- Col 1 -->
                     <div class="flex flex-col gap-2 h-full overflow-hidden">
-                        <div class="font-heading font-bold text-sm md:text-base text-center bg-brand-blue text-white py-1.5 rounded-xl border-2 border-brand-dark dark:border-slate-500 shadow-neo-sm shrink-0">
+                        <div
+                            class="font-heading font-bold text-sm md:text-base text-center bg-brand-blue text-white py-1.5 rounded-xl border-2 border-brand-dark dark:border-slate-500 shadow-neo-sm shrink-0">
                             <span id="col1Title">Cat 1</span>
                         </div>
                         <div id="col1List" class="flex flex-col gap-1.5 overflow-y-auto pr-1 h-full"></div>
                     </div>
-
-                    <!-- Col 2 -->
                     <div class="flex flex-col gap-2 h-full overflow-hidden">
-                        <div class="font-heading font-bold text-sm md:text-base text-center bg-brand-orange text-white py-1.5 rounded-xl border-2 border-brand-dark dark:border-slate-500 shadow-neo-sm shrink-0">
+                        <div
+                            class="font-heading font-bold text-sm md:text-base text-center bg-brand-orange text-white py-1.5 rounded-xl border-2 border-brand-dark dark:border-slate-500 shadow-neo-sm shrink-0">
                             <span id="col2Title">Cat 2</span>
                         </div>
                         <div id="col2List" class="flex flex-col gap-1.5 overflow-y-auto pr-1 h-full"></div>
                     </div>
-
-                    <!-- Col 3 -->
                     <div class="flex flex-col gap-2 h-full overflow-hidden">
-                        <div class="font-heading font-bold text-sm md:text-base text-center bg-brand-green text-white py-1.5 rounded-xl border-2 border-brand-dark dark:border-slate-500 shadow-neo-sm shrink-0">
+                        <div
+                            class="font-heading font-bold text-sm md:text-base text-center bg-brand-green text-white py-1.5 rounded-xl border-2 border-brand-dark dark:border-slate-500 shadow-neo-sm shrink-0">
                             <span id="col3Title">Cat 3</span>
                         </div>
                         <div id="col3List" class="flex flex-col gap-1.5 overflow-y-auto pr-1 h-full"></div>
@@ -242,68 +379,79 @@
             </div>
         </div>
 
-        <!-- ==================== TAB: TOPIC PRESENTATION ==================== -->
-        <div id="viewTopic" class="hidden w-full h-full flex flex-col items-center justify-center gap-4 max-w-4xl mx-auto">
-            
-            <!-- Main Play Button Area -->
+        <div id="viewTopic"
+            class="hidden w-full h-full flex flex-col items-center justify-center gap-4 max-w-4xl mx-auto">
+
             <div class="w-full flex flex-col items-center justify-center flex-1 min-h-[250px] md:min-h-[300px]">
-                <button onclick="presentSlideByIndex(0)" id="mainShowTopicBtn" class="btn-neo bg-brand-blue text-white py-6 md:py-8 px-10 md:px-16 text-3xl md:text-5xl tracking-wide flex items-center justify-center gap-4 hover:bg-blue-600 shadow-neo-lg hover:shadow-neo transition-all rounded-[2rem]">
+                <button onclick="presentSlideByIndex(0)" id="mainShowTopicBtn"
+                    class="btn-neo bg-brand-blue text-white py-6 md:py-8 px-10 md:px-16 text-3xl md:text-5xl tracking-wide flex items-center justify-center gap-4 hover:bg-blue-600 shadow-neo-lg hover:shadow-neo transition-all rounded-[2rem]">
                     <i data-lucide="play" class="w-10 h-10 md:w-14 md:h-14 fill-current"></i> SHOW TOPIC
                 </button>
-                <p id="noTopicWarning" class="mt-6 text-slate-500 font-bold text-sm md:text-base hidden">No slides saved yet. Add one below!</p>
+                <p id="noTopicWarning" class="mt-6 text-slate-500 font-bold text-sm md:text-base hidden">No slides saved
+                    yet. Add one below!</p>
             </div>
 
-            <!-- Slides List / Manager -->
-            <div class="w-full card-neo p-4 md:p-6 bg-white dark:bg-slate-800 flex flex-col h-[40vh] md:h-[45vh] shrink-0 mb-4">
+            <div
+                class="w-full card-neo p-4 md:p-6 bg-white dark:bg-slate-800 flex flex-col h-[40vh] md:h-[45vh] shrink-0 mb-4">
                 <div class="flex justify-between items-center mb-4 shrink-0">
                     <h2 class="font-heading font-bold text-lg md:text-2xl">Saved Slides</h2>
                     <div class="flex gap-2">
-                        <button onclick="toggleTopicVisibility()" id="toggleVisibilityBtn" class="btn-neo bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 px-3 py-1.5 md:px-4 md:py-2 text-xs md:text-sm flex items-center gap-1 hover:bg-slate-200">
-                            <i data-lucide="eye" class="w-3.5 h-3.5 md:w-4 md:h-4"></i> <span class="hidden sm:inline">Show</span>
+                        <button onclick="toggleTopicVisibility()" id="toggleVisibilityBtn"
+                            class="btn-neo bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 px-3 py-1.5 md:px-4 md:py-2 text-xs md:text-sm flex items-center gap-1 hover:bg-slate-200">
+                            <i data-lucide="eye" class="w-3.5 h-3.5 md:w-4 md:h-4"></i> <span
+                                class="hidden sm:inline">Show</span>
                         </button>
-                        <button onclick="openTopicModal()" class="btn-neo bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 px-3 py-1.5 md:px-4 md:py-2 text-xs md:text-sm flex items-center gap-1 hover:bg-slate-200">
+                        <button onclick="openTopicModal()"
+                            class="btn-neo bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 px-3 py-1.5 md:px-4 md:py-2 text-xs md:text-sm flex items-center gap-1 hover:bg-slate-200">
                             <i data-lucide="plus" class="w-3.5 h-3.5 md:w-4 md:h-4"></i> Add Slide
                         </button>
                     </div>
                 </div>
-                <div id="slideList" class="flex flex-col gap-2 overflow-y-auto pr-2 pb-2 h-full">
-                    <!-- Slides injected here -->
-                </div>
+                <div id="slideList" class="flex flex-col gap-2 overflow-y-auto pr-2 pb-2 h-full"></div>
             </div>
-
         </div>
 
     </main>
 
-    <!-- ==================== TAB: SPEAKER TIMER ==================== -->
-    <div id="viewTimer" class="hidden fixed top-16 md:top-20 inset-x-0 bottom-0 z-30 transition-colors duration-500 bg-brand-green flex flex-col items-center justify-between p-6 overflow-hidden">
-        
-        <!-- Settings Gear Button -->
-        <button onclick="openTimerSettings()" class="absolute top-4 right-4 md:top-8 md:right-8 btn-neo bg-black/10 hover:bg-black/25 text-white border-transparent p-3 backdrop-blur-sm transition-all z-40">
+    <div id="viewTimer"
+        class="hidden fixed top-16 md:top-20 inset-x-0 bottom-0 z-30 transition-colors duration-500 bg-brand-green flex flex-col items-center justify-between p-6 overflow-hidden">
+
+        <button onclick="openTimerSettings()"
+            class="absolute top-4 right-4 md:top-8 md:right-8 btn-neo bg-black/10 hover:bg-black/25 text-white border-transparent p-3 backdrop-blur-sm transition-all z-40">
             <i data-lucide="settings" class="w-6 h-6 md:w-8 md:h-8"></i>
         </button>
 
-        <!-- Header Image (absolute overlay — does NOT participate in flex layout) -->
         <div class="absolute top-0 left-0 right-0 z-[15] pointer-events-none">
             <img src="media/Header.png" alt="Stage Curtain Header" class="w-full h-auto block" />
         </div>
 
-        <!-- Speaker illustration at bottom right (absolute overlay) -->
-        <div class="absolute bottom-2 right-2 md:bottom-4 md:right-4 w-24 sm:w-36 md:w-48 lg:w-60 xl:w-72 z-10 pointer-events-none opacity-90 transition-all duration-300">
+        <div
+            class="absolute bottom-2 right-2 md:bottom-4 md:right-4 w-24 sm:w-36 md:w-48 lg:w-60 xl:w-72 z-10 pointer-events-none opacity-90 transition-all duration-300">
             <img src="media/Speaker.png" alt="Speaker" class="w-full h-auto object-contain" />
         </div>
 
-        <!-- Timer Content (the only flex children now) -->
         <div class="flex-grow flex flex-col items-center justify-center z-20 w-full">
-            <!-- Current Speaker Name -->
-            <div id="speakerNameDisplay" class="font-heading font-bold text-2xl sm:text-3xl md:text-5xl lg:text-6xl text-white/95 drop-shadow-lg tracking-wide mb-2 md:mb-4 text-center transition-all duration-300 max-w-[90%] truncate" style="display:none;"></div>
 
-            <!-- Speaker Counter Badge -->
-            <div id="speakerCounterBadge" class="mb-3 md:mb-5 px-4 py-1.5 rounded-full bg-black/15 backdrop-blur-sm text-white font-heading font-bold text-xs md:text-sm tracking-widest uppercase" style="display:none;">
+            <div id="cinematicSpeakerOverlay"
+                class="fixed inset-0 z-[100] flex items-center justify-center bg-brand-dark/80 backdrop-blur-lg transition-opacity duration-500 opacity-0 pointer-events-none"
+                style="display:none;">
+                <div id="cinematicSpeakerName"
+                    class="font-heading font-bold text-5xl md:text-7xl lg:text-9xl text-white drop-shadow-2xl scale-50 opacity-0 transition-all duration-700">
+                </div>
+            </div>
+
+            <div id="speakerNameDisplay"
+                class="bg-white/20 backdrop-blur-md border border-white/30 rounded-2xl shadow-lg px-6 py-3 font-heading font-bold text-2xl sm:text-3xl md:text-5xl lg:text-6xl text-white tracking-wide mb-2 md:mb-4 text-center transition-all duration-300 max-w-[90%] truncate"
+                style="display:none;"></div>
+
+            <div id="speakerCounterBadge"
+                class="mb-3 md:mb-5 px-4 py-1.5 rounded-full bg-black/15 backdrop-blur-sm text-white font-heading font-bold text-xs md:text-sm tracking-widest uppercase"
+                style="display:none;">
                 Speaker <span id="speakerCurrentNum">1</span> of <span id="speakerTotalNum">1</span>
             </div>
 
-            <div id="timeDisplay" class="text-[5.5rem] sm:text-[7.5rem] md:text-[12rem] lg:text-[16rem] font-heading font-bold tracking-widest tabular-nums text-white leading-none drop-shadow-2xl">
+            <div id="timeDisplay"
+                class="text-[5.5rem] sm:text-[7.5rem] md:text-[12rem] lg:text-[16rem] font-heading font-bold tracking-widest tabular-nums text-white leading-none drop-shadow-2xl">
                 00:00
             </div>
             <div class="mt-4 text-white/90 font-bold tracking-wide text-lg md:text-3xl drop-shadow-lg">
@@ -311,27 +459,29 @@
             </div>
         </div>
 
-        <!-- Action Buttons at the bottom -->
         <div class="w-full max-w-4xl flex flex-col gap-3 px-4 z-40 mb-4 shrink-0 items-center">
-            <!-- Speaker Navigation Row -->
             <div id="speakerNavRow" class="flex gap-3 md:gap-4 w-full max-w-3xl justify-center" style="display:none;">
-                <button onclick="prevSpeaker()" class="flex-1 btn-neo bg-white/15 text-white py-2.5 md:py-3.5 text-sm md:text-xl hover:bg-white/25 flex items-center justify-center gap-2 border-transparent backdrop-blur-sm shadow-neo">
+                <button onclick="prevSpeaker()"
+                    class="flex-1 btn-neo bg-white/15 text-white py-2.5 md:py-3.5 text-sm md:text-xl hover:bg-white/25 flex items-center justify-center gap-2 border-transparent backdrop-blur-sm shadow-neo">
                     <i data-lucide="chevron-left" class="w-5 h-5 md:w-6 md:h-6"></i> Prev
                 </button>
-                <button onclick="nextSpeaker()" class="flex-[2] btn-neo bg-white text-slate-800 py-2.5 md:py-3.5 text-sm md:text-xl hover:bg-slate-100 flex items-center justify-center gap-2 border-transparent shadow-neo">
+                <button onclick="nextSpeaker()"
+                    class="flex-[2] btn-neo bg-white text-slate-800 py-2.5 md:py-3.5 text-sm md:text-xl hover:bg-slate-100 flex items-center justify-center gap-2 border-transparent shadow-neo">
                     Next Speaker <i data-lucide="chevron-right" class="w-5 h-5 md:w-6 md:h-6"></i>
                 </button>
             </div>
 
-            <!-- Timer Control Row -->
             <div class="flex gap-3 md:gap-6 w-full max-w-3xl justify-center">
-                <button onclick="startTimer()" id="startBtn" class="flex-1 btn-neo bg-white text-slate-800 py-3.5 md:py-5 text-base md:text-2xl hover:bg-slate-100 flex items-center justify-center gap-2 border-transparent shadow-neo">
+                <button onclick="startTimer()" id="startBtn"
+                    class="flex-1 btn-neo bg-white text-slate-800 py-3.5 md:py-5 text-base md:text-2xl hover:bg-slate-100 flex items-center justify-center gap-2 border-transparent shadow-neo">
                     <i data-lucide="play" class="w-5 h-5 md:w-7 md:h-7 fill-current"></i> Start
                 </button>
-                <button onclick="pauseTimer()" class="flex-1 btn-neo bg-black/20 text-white py-3.5 md:py-5 text-base md:text-2xl hover:bg-black/30 flex items-center justify-center gap-2 border-transparent backdrop-blur-sm shadow-neo">
+                <button onclick="pauseTimer()"
+                    class="flex-1 btn-neo bg-black/20 text-white py-3.5 md:py-5 text-base md:text-2xl hover:bg-black/30 flex items-center justify-center gap-2 border-transparent backdrop-blur-sm shadow-neo">
                     <i data-lucide="pause" class="w-5 h-5 md:w-7 md:h-7 fill-current"></i> Pause
                 </button>
-                <button onclick="resetTimer()" class="flex-1 btn-neo bg-black/20 text-white py-3.5 md:py-5 text-base md:text-2xl hover:bg-black/30 flex items-center justify-center gap-2 border-transparent backdrop-blur-sm shadow-neo">
+                <button onclick="resetTimer()"
+                    class="flex-1 btn-neo bg-black/20 text-white py-3.5 md:py-5 text-base md:text-2xl hover:bg-black/30 flex items-center justify-center gap-2 border-transparent backdrop-blur-sm shadow-neo">
                     <i data-lucide="square" class="w-5 h-5 md:w-7 md:h-7 fill-current"></i> Reset
                 </button>
             </div>
@@ -339,161 +489,200 @@
     </div>
 
 
-    <!-- Timer Settings Modal -->
     <div id="timerModal" class="hidden fixed inset-0 z-[60] flex items-center justify-center modal-overlay p-4">
-        <div class="card-neo p-6 md:p-8 max-w-md w-full bg-white dark:bg-slate-800 animate-pop max-h-[90vh] overflow-y-auto">
+        <div
+            class="card-neo p-6 md:p-8 max-w-md w-full bg-white dark:bg-slate-800 animate-pop max-h-[90vh] overflow-y-auto">
             <h3 class="font-heading font-bold text-xl md:text-2xl mb-6">Timer Settings</h3>
-            
-            <!-- Time per Speaker -->
             <label class="block text-sm font-bold text-slate-500 mb-2">Time Per Speaker</label>
             <div class="flex gap-4 mb-6">
                 <div class="flex-1">
                     <label class="block text-xs font-bold text-slate-400 mb-1">Minutes</label>
-                    <input type="number" id="settingMins" min="0" max="60" value="5" class="input-neo w-full text-center text-xl md:text-2xl" />
+                    <input type="number" id="settingMins" min="0" max="60" value="5"
+                        class="input-neo w-full text-center text-xl md:text-2xl" />
                 </div>
                 <div class="flex items-center text-2xl md:text-3xl font-bold pt-4">:</div>
                 <div class="flex-1">
                     <label class="block text-xs font-bold text-slate-400 mb-1">Seconds</label>
-                    <input type="number" id="settingSecs" min="0" max="59" value="0" class="input-neo w-full text-center text-xl md:text-2xl" />
+                    <input type="number" id="settingSecs" min="0" max="59" value="0"
+                        class="input-neo w-full text-center text-xl md:text-2xl" />
                 </div>
             </div>
-
-            <!-- Speaker List -->
             <div class="mb-6">
                 <label class="block text-sm font-bold text-slate-500 mb-2">
                     <i data-lucide="users" class="w-4 h-4 inline-block mr-1"></i>
                     Speaker Order <span class="text-xs text-slate-400 font-semibold">(one per line)</span>
                 </label>
-                <textarea id="settingSpeakers" class="input-neo w-full text-sm md:text-base leading-relaxed resize-none" rows="8" placeholder="John Doe&#10;Jane Smith&#10;Alex Johnson&#10;...enter each speaker on a new line"></textarea>
-                <p class="text-xs text-slate-400 dark:text-slate-500 mt-1.5 font-semibold">Leave empty for a simple timer without speakers.</p>
+                <textarea id="settingSpeakers" class="input-neo w-full text-sm md:text-base leading-relaxed resize-none"
+                    rows="8"
+                    placeholder="John Doe&#10;Jane Smith&#10;Alex Johnson&#10;...enter each speaker on a new line"></textarea>
+                <p class="text-xs text-slate-400 dark:text-slate-500 mt-1.5 font-semibold">Leave empty for a simple
+                    timer without speakers.</p>
             </div>
-
             <div class="flex gap-3">
-                <button onclick="closeTimerSettings()" class="flex-1 btn-neo bg-slate-200 dark:bg-slate-600 text-slate-700 dark:text-slate-200 py-3">Cancel</button>
-                <button onclick="saveTimerSettings()" class="flex-[2] btn-neo bg-brand-green text-white py-3">Save</button>
+                <button onclick="closeTimerSettings()"
+                    class="flex-1 btn-neo bg-slate-200 dark:bg-slate-600 text-slate-700 dark:text-slate-200 py-3">Cancel</button>
+                <button onclick="saveTimerSettings()"
+                    class="flex-[2] btn-neo bg-brand-green text-white py-3">Save</button>
             </div>
         </div>
     </div>
 
-    <!-- Topic/Slide Modal -->
     <div id="topicModal" class="hidden fixed inset-0 z-[60] flex items-center justify-center modal-overlay p-4">
-        <div class="card-neo p-6 md:p-8 max-w-lg w-full bg-white dark:bg-slate-800 animate-pop flex flex-col gap-4">
-            <h3 class="font-heading font-bold text-2xl" id="topicModalTitle">Create Slide</h3>
-            <input type="hidden" id="topicId" value="">
-            
-            <div>
-                <label class="block text-sm font-bold text-slate-500 mb-1">Header (e.g., Event Name)</label>
-                <input type="text" id="topicHeader" placeholder="Grand Final Debate" class="input-neo p-3 w-full text-sm md:text-base" />
+        <div
+            class="card-neo p-6 md:p-8 max-w-lg w-full bg-white dark:bg-slate-800 animate-pop flex flex-col max-h-[90vh]">
+            <div class="flex justify-between items-center mb-6 shrink-0">
+                <h3 class="font-heading font-bold text-xl md:text-2xl">Manage Slide</h3>
+                <button onclick="closeTopicModal()"
+                    class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
             </div>
-            <div class="flex flex-col min-h-[120px]">
-                <label class="block text-sm font-bold text-slate-500 mb-1">Topic / Motion</label>
-                <textarea id="topicMotion" placeholder="This House would ban the development of autonomous weapons." class="input-neo p-3 w-full text-base md:text-lg font-bold text-brand-blue dark:text-blue-400 flex-1 resize-none" rows="4"></textarea>
+            <div class="flex-1 overflow-y-auto pr-1 flex flex-col gap-4">
+                <input type="hidden" id="topicId" />
+                <div>
+                    <label class="block text-sm font-bold text-slate-500 mb-2">Header / Category</label>
+                    <input type="text" id="topicHeader" class="input-neo w-full" placeholder="e.g. MOTION 1" />
+                </div>
+                <div>
+                    <label class="block text-sm font-bold text-slate-500 mb-2">Motion / Topic Content</label>
+                    <textarea id="topicMotion" class="input-neo w-full leading-relaxed resize-none" rows="5"
+                        placeholder="Enter the full text for this slide..."></textarea>
+                </div>
             </div>
-
-            <div class="flex gap-3 mt-2 md:mt-4">
-                <button onclick="closeTopicModal()" class="flex-1 btn-neo bg-slate-200 dark:bg-slate-600 text-slate-700 dark:text-slate-200 py-3">Cancel</button>
-                <button onclick="saveSlide()" class="flex-[2] btn-neo bg-brand-green text-white py-3">Save Slide</button>
+            <div class="flex justify-end gap-3 mt-6 shrink-0">
+                <button onclick="closeTopicModal()"
+                    class="btn-neo bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 px-4 py-2">Cancel</button>
+                <button onclick="saveTopic()" class="btn-neo bg-brand-blue text-white px-6 py-2">Save Slide</button>
             </div>
         </div>
     </div>
 
-    <!-- Backup & Restore Modal -->
     <div id="backupModal" class="hidden fixed inset-0 z-[60] flex items-center justify-center modal-overlay p-4">
-        <div class="card-neo p-6 md:p-8 max-w-sm w-full bg-white dark:bg-slate-800 animate-pop flex flex-col gap-6 text-center">
-            <div>
-                <h3 class="font-heading font-bold text-2xl mb-1">Backup & Restore</h3>
-                <p class="text-sm text-slate-500 dark:text-slate-400 font-semibold">Save your categories, slides, and timer settings to a file.</p>
-            </div>
-
-            <div class="flex flex-col gap-3">
-                <button onclick="exportData()" class="w-full btn-neo bg-brand-blue text-white py-3 md:py-4 flex items-center justify-center gap-2 hover:bg-blue-600">
-                    <i data-lucide="download" class="w-5 h-5"></i> Export Backup (JSON)
+        <div class="card-neo p-6 md:p-8 max-w-sm w-full bg-white dark:bg-slate-800 animate-pop">
+            <h3 class="font-heading font-bold text-xl md:text-2xl mb-4 text-center">Data Backup</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-400 mb-6 text-center">Save all your lists, slides, and
+                timer settings to a file, or restore them from a previous backup.</p>
+            <div class="flex flex-col gap-3 mb-6">
+                <button onclick="exportData()"
+                    class="btn-neo bg-brand-blue text-white py-3 flex items-center justify-center gap-2">
+                    <i data-lucide="download" class="w-5 h-5"></i> Export Backup
                 </button>
-                
-                <label class="w-full btn-neo bg-brand-orange text-white py-3 md:py-4 flex items-center justify-center gap-2 hover:bg-orange-600 cursor-pointer">
-                    <i data-lucide="upload" class="w-5 h-5"></i> Import Backup (JSON)
+                <label
+                    class="btn-neo bg-brand-green text-white py-3 flex items-center justify-center gap-2 cursor-pointer">
+                    <i data-lucide="upload" class="w-5 h-5"></i> Restore Backup (JSON)
                     <input type="file" id="importFileInput" accept=".json" class="hidden" onchange="importData(event)">
                 </label>
             </div>
-
-            <button onclick="closeBackupModal()" class="btn-neo bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 py-3 hover:bg-slate-300">Close</button>
+            <button onclick="closeBackupModal()"
+                class="btn-neo w-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 py-3 hover:bg-slate-300">Close</button>
         </div>
     </div>
 
-    <!-- Presentation Overlay -->
-    <div id="presentationOverlay" class="hidden fixed inset-0 z-[70] bg-brand-dark dark:bg-slate-900 text-white flex flex-col items-center justify-center p-8 md:p-24 text-center overflow-hidden">
-        
-        <!-- Close -->
-        <button onclick="stopPresentation()" class="absolute top-4 right-4 md:top-6 md:right-6 btn-neo bg-white/10 hover:bg-white/20 text-white border-transparent p-2.5 md:p-3 backdrop-blur-sm transition-all z-[80]">
+    <div id="presentationOverlay"
+        class="hidden fixed inset-0 z-[70] bg-brand-dark dark:bg-slate-900 text-white flex flex-col items-center justify-center p-8 md:p-24 text-center overflow-hidden">
+        <button onclick="stopPresentation()"
+            class="absolute top-4 right-4 md:top-6 md:right-6 btn-neo bg-white/10 hover:bg-white/20 text-white border-transparent p-2.5 md:p-3 backdrop-blur-sm transition-all z-[80]">
             <i data-lucide="x" class="w-6 h-6 md:w-8 md:h-8"></i>
         </button>
-        
-        <!-- Navigation Controls -->
-        <button onclick="prevSlide()" class="absolute left-3 md:left-8 top-1/2 -translate-y-1/2 btn-neo bg-white/10 hover:bg-white/20 text-white border-transparent p-2 md:p-4 backdrop-blur-sm transition-all z-[80]">
+        <button onclick="prevSlide()"
+            class="absolute left-3 md:left-8 top-1/2 -translate-y-1/2 btn-neo bg-white/10 hover:bg-white/20 text-white border-transparent p-2 md:p-4 backdrop-blur-sm transition-all z-[80]">
             <i data-lucide="chevron-left" class="w-8 h-8 md:w-10 md:h-10"></i>
         </button>
-        <button onclick="nextSlide()" class="absolute right-3 md:right-8 top-1/2 -translate-y-1/2 btn-neo bg-white/10 hover:bg-white/20 text-white border-transparent p-2 md:p-4 backdrop-blur-sm transition-all z-[80]">
+        <button onclick="nextSlide()"
+            class="absolute right-3 md:right-8 top-1/2 -translate-y-1/2 btn-neo bg-white/10 hover:bg-white/20 text-white border-transparent p-2 md:p-4 backdrop-blur-sm transition-all z-[80]">
             <i data-lucide="chevron-right" class="w-8 h-8 md:w-10 md:h-10"></i>
         </button>
 
-        <!-- Slide Content Wrapper for Animation -->
-        <div id="slideContentContainer" class="flex flex-col items-center justify-center w-full max-w-6xl px-12 md:px-20 z-50">
-            <div id="displayHeader" class="text-brand-blue font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] text-lg md:text-3xl lg:text-4xl mb-4 md:mb-8 drop-shadow-md"></div>
-            <div id="displayMotion" class="font-heading font-bold text-3xl md:text-6xl lg:text-7xl text-brand-chalk max-w-6xl leading-tight drop-shadow-lg"></div>
+        <div id="slideContentContainer"
+            class="flex flex-col items-center justify-center w-full max-w-6xl px-12 md:px-20 z-50">
+            <div id="displayHeader"
+                class="text-brand-blue font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] text-sm md:text-xl lg:text-2xl mb-4 md:mb-8 opacity-80">
+            </div>
+            <div id="displayMotion"
+                class="font-heading font-bold text-3xl sm:text-5xl md:text-6xl lg:text-8xl leading-tight md:leading-[1.1] drop-shadow-lg">
+            </div>
         </div>
+        <div id="slideIndicator"
+            class="absolute bottom-6 md:bottom-8 text-slate-400 font-bold tracking-widest text-xs md:text-sm"></div>
+    </div>
 
-        <!-- Indicator -->
-        <div id="slideIndicator" class="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 text-slate-500 font-bold tracking-widest text-xs md:text-sm uppercase z-[80]"></div>
+    <div id="toast"
+        class="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white px-4 py-2 rounded-xl shadow-lg transition-all duration-300 translate-y-20 opacity-0 z-[100] font-bold text-sm">
     </div>
 
     <script>
-        // --- TAB LOGIC ---
-        function switchTab(tab) {
-            const viewOrder = document.getElementById('viewOrder');
-            const viewTimer = document.getElementById('viewTimer');
-            const viewTopic = document.getElementById('viewTopic');
+        // --- SHARED UI LOGIC ---
+        let currentTab = 'order';
 
-            if (viewOrder) viewOrder.classList.toggle('hidden', tab !== 'order');
-            if (viewTimer) viewTimer.classList.toggle('hidden', tab !== 'timer');
-            if (viewTopic) viewTopic.classList.toggle('hidden', tab !== 'topic');
+        function switchTab(tabId) {
+            currentTab = tabId;
+            document.getElementById('viewOrder').classList.add('hidden');
+            document.getElementById('viewTimer').classList.add('hidden');
+            document.getElementById('viewTopic').classList.add('hidden');
 
-            const tabs = ['order', 'timer', 'topic'];
-            const activeClass = "btn-neo bg-brand-blue text-white px-3 md:px-4 py-1.5 md:py-2 text-sm md:text-base whitespace-nowrap";
-            const inactiveClass = "btn-neo bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-3 md:px-4 py-1.5 md:py-2 text-sm md:text-base whitespace-nowrap";
+            const orderBtn = document.getElementById('tabBtnOrder');
+            const timerBtn = document.getElementById('tabBtnTimer');
+            const topicBtn = document.getElementById('tabBtnTopic');
 
-            tabs.forEach(t => {
-                const btn = document.getElementById('tabBtn' + t.charAt(0).toUpperCase() + t.slice(1));
-                if (btn) btn.className = tab === t ? activeClass : inactiveClass;
+            // Reset tab buttons
+            [orderBtn, timerBtn, topicBtn].forEach(btn => {
+                btn.className = 'btn-neo bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-3 md:px-4 py-1.5 md:py-2 text-sm md:text-base whitespace-nowrap';
             });
+
+            if (tabId === 'order') {
+                document.getElementById('viewOrder').classList.remove('hidden');
+                orderBtn.className = 'btn-neo bg-brand-blue text-white px-3 md:px-4 py-1.5 md:py-2 text-sm md:text-base whitespace-nowrap';
+            } else if (tabId === 'timer') {
+                document.getElementById('viewTimer').classList.remove('hidden');
+                document.getElementById('viewTimer').classList.add('flex');
+                timerBtn.className = 'btn-neo bg-brand-green text-white px-3 md:px-4 py-1.5 md:py-2 text-sm md:text-base whitespace-nowrap';
+                updateTimerDisplay();
+            } else if (tabId === 'topic') {
+                document.getElementById('viewTopic').classList.remove('hidden');
+                topicBtn.className = 'btn-neo bg-brand-pink text-white px-3 md:px-4 py-1.5 md:py-2 text-sm md:text-base whitespace-nowrap';
+            }
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            html.classList.toggle('dark');
+            localStorage.setItem('theme_speech_randomizer', html.classList.contains('dark') ? 'dark' : 'light');
+        }
+
+        function showToast(message, isError = false) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = `fixed bottom-4 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded-xl shadow-lg transition-all duration-300 z-[100] font-bold text-sm ${isError ? 'bg-brand-pink text-white' : 'bg-slate-800 text-white'}`;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => toast.classList.add('translate-y-20', 'opacity-0'), 2500);
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
         }
 
         // --- BACKUP & RESTORE LOGIC ---
-        function openBackupModal() {
-            document.getElementById('backupModal').classList.remove('hidden');
-        }
-
-        function closeBackupModal() {
-            document.getElementById('backupModal').classList.add('hidden');
-        }
+        function openBackupModal() { document.getElementById('backupModal').classList.remove('hidden'); }
+        function closeBackupModal() { document.getElementById('backupModal').classList.add('hidden'); }
 
         function exportData() {
-            const data = {};
-            // Loop through all localStorage items and only grab ours
+            const exportObj = {};
             for (let i = 0; i < localStorage.length; i++) {
                 const key = localStorage.key(i);
-                if (key && key.startsWith('speech_')) {
-                    data[key] = localStorage.getItem(key);
+                if (key.startsWith('speech_')) {
+                    exportObj[key] = localStorage.getItem(key);
                 }
             }
-            
-            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const dataStr = JSON.stringify(exportObj, null, 2);
+            const blob = new Blob([dataStr], { type: "application/json" });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `speech_backup_${new Date().toISOString().slice(0,10)}.json`;
+            a.download = `speech_backup_${new Date().toISOString().slice(0, 10)}.json`;
             a.click();
             URL.revokeObjectURL(url);
-            
             showToast('Backup downloaded successfully!');
             closeBackupModal();
         }
@@ -501,20 +690,17 @@
         function importData(event) {
             const file = event.target.files[0];
             if (!file) return;
-
             const reader = new FileReader();
-            reader.onload = function(e) {
+            reader.onload = function (e) {
                 try {
                     const data = JSON.parse(e.target.result);
                     let importedCount = 0;
-                    
                     for (const key in data) {
                         if (key.startsWith('speech_')) {
                             localStorage.setItem(key, data[key]);
                             importedCount++;
                         }
                     }
-                    
                     if (importedCount > 0) {
                         showToast('Backup restored successfully! Reloading...');
                         setTimeout(() => location.reload(), 1000);
@@ -526,27 +712,28 @@
                 }
             };
             reader.readAsText(file);
-            // Reset input so the same file can be selected again if needed
             event.target.value = '';
         }
 
         // --- TIMER LOGIC (COUNT UP with Speaker Order) ---
         let timerInterval;
-        let timeElapsed = 0; 
-        let maxTime = 300; 
-        let speakerList = [];       // Array of speaker name strings
-        let currentSpeakerIdx = 0;  // Currently active speaker index
+        let timeElapsed = 0;
+        let maxTime = 300;
+        let speakerList = [];
+        let currentSpeakerIdx = 0;
+
+        // NEW: Track last speaker to handle the pop up safely
+        let lastAnnouncedSpeaker = null;
 
         function updateTimerDisplay() {
             const mins = Math.floor(timeElapsed / 60).toString().padStart(2, '0');
             const secs = (timeElapsed % 60).toString().padStart(2, '0');
             const display = document.getElementById('timeDisplay');
-            if(display) display.textContent = `${mins}:${secs}`;
+            if (display) display.textContent = `${mins}:${secs}`;
 
             const remaining = maxTime - timeElapsed;
             const container = document.getElementById('viewTimer');
-            
-            if(!container || !display) return;
+            if (!container || !display) return;
 
             container.classList.remove('bg-brand-green', 'bg-brand-orange', 'bg-brand-pink', 'bg-black');
             display.classList.remove('animate-shake', 'text-brand-pink');
@@ -564,44 +751,73 @@
         }
 
         function updateSpeakerUI() {
-            const nameEl = document.getElementById('speakerNameDisplay');
-            const badgeEl = document.getElementById('speakerCounterBadge');
+            const nameDisplay = document.getElementById('speakerNameDisplay');
             const navRow = document.getElementById('speakerNavRow');
-            const curNum = document.getElementById('speakerCurrentNum');
-            const totalNum = document.getElementById('speakerTotalNum');
+            const counterBadge = document.getElementById('speakerCounterBadge');
 
             if (speakerList.length === 0) {
-                // No speakers — hide speaker UI
-                if(nameEl) nameEl.style.display = 'none';
-                if(badgeEl) badgeEl.style.display = 'none';
-                if(navRow) navRow.style.display = 'none';
+                nameDisplay.style.display = 'none';
+                navRow.style.display = 'none';
+                counterBadge.style.display = 'none';
+                lastAnnouncedSpeaker = null;
                 return;
             }
 
-            // Show speaker UI
-            if(nameEl) {
-                nameEl.style.display = '';
-                nameEl.textContent = speakerList[currentSpeakerIdx] || '';
-                // Pop animation on name change
-                nameEl.classList.remove('animate-pop');
-                void nameEl.offsetWidth; // force reflow
-                nameEl.classList.add('animate-pop');
+            const currentName = speakerList[currentSpeakerIdx];
+
+            // Update the small glass container
+            nameDisplay.textContent = currentName;
+            nameDisplay.style.display = 'block';
+            navRow.style.display = 'flex';
+            counterBadge.style.display = 'block';
+
+            document.getElementById('speakerCurrentNum').textContent = currentSpeakerIdx + 1;
+            document.getElementById('speakerTotalNum').textContent = speakerList.length;
+
+            // Trigger the cinematic full-screen pop-up only if the speaker changed
+            if (lastAnnouncedSpeaker !== currentName) {
+                showCinematicSpeaker(currentName);
+                lastAnnouncedSpeaker = currentName;
             }
-            if(badgeEl) {
-                badgeEl.style.display = '';
-            }
-            if(navRow) {
-                navRow.style.display = '';
-            }
-            if(curNum) curNum.textContent = currentSpeakerIdx + 1;
-            if(totalNum) totalNum.textContent = speakerList.length;
+        }
+
+        function showCinematicSpeaker(name) {
+            const overlay = document.getElementById('cinematicSpeakerOverlay');
+            const nameEl = document.getElementById('cinematicSpeakerName');
+
+            nameEl.textContent = name;
+            overlay.style.display = 'flex';
+
+            // Force reflow
+            void overlay.offsetWidth;
+
+            // Fade in overlay and scale up text
+            overlay.classList.remove('opacity-0');
+            overlay.classList.add('opacity-100');
+
+            nameEl.classList.remove('scale-50', 'opacity-0');
+            nameEl.classList.add('scale-100', 'opacity-100');
+
+            // Hold for 1.5 seconds, then fade out
+            setTimeout(() => {
+                overlay.classList.remove('opacity-100');
+                overlay.classList.add('opacity-0');
+
+                nameEl.classList.remove('scale-100');
+                nameEl.classList.add('scale-110', 'opacity-0');
+
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                    nameEl.classList.remove('scale-110', 'scale-100', 'opacity-100');
+                    nameEl.classList.add('scale-50', 'opacity-0');
+                }, 500);
+            }, 1500);
         }
 
         function nextSpeaker() {
             if (speakerList.length === 0) return;
             if (currentSpeakerIdx < speakerList.length - 1) {
                 currentSpeakerIdx++;
-                // Reset timer for the new speaker
                 clearInterval(timerInterval);
                 timeElapsed = 0;
                 updateTimerDisplay();
@@ -616,7 +832,6 @@
             if (speakerList.length === 0) return;
             if (currentSpeakerIdx > 0) {
                 currentSpeakerIdx--;
-                // Reset timer for the new speaker
                 clearInterval(timerInterval);
                 timeElapsed = 0;
                 updateTimerDisplay();
@@ -649,10 +864,9 @@
             pauseTimer();
             document.getElementById('settingMins').value = Math.floor(maxTime / 60);
             document.getElementById('settingSecs').value = maxTime % 60;
-            // Populate speakers textarea
             document.getElementById('settingSpeakers').value = speakerList.join('\n');
             document.getElementById('timerModal').classList.remove('hidden');
-            if(window.lucide) lucide.createIcons();
+            if (window.lucide) lucide.createIcons();
         }
 
         function closeTimerSettings() {
@@ -663,31 +877,28 @@
             const m = parseInt(document.getElementById('settingMins').value) || 0;
             const s = parseInt(document.getElementById('settingSecs').value) || 0;
             maxTime = (m * 60) + s;
-            
             const targetStr = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
             document.getElementById('targetDisplay').textContent = targetStr;
-            
-            localStorage.setItem('speech_maxTime', maxTime); 
+            localStorage.setItem('speech_maxTime', maxTime);
 
-            // Parse speakers
             const raw = document.getElementById('settingSpeakers').value.trim();
             speakerList = raw ? raw.split(/\n/).map(n => n.trim()).filter(n => n.length > 0) : [];
             localStorage.setItem('speech_speakerList', JSON.stringify(speakerList));
 
-            // Reset to first speaker
             currentSpeakerIdx = 0;
             localStorage.setItem('speech_currentSpeakerIdx', 0);
 
-            // Reset timer
             clearInterval(timerInterval);
             timeElapsed = 0;
-
             closeTimerSettings();
-            updateTimerDisplay(); 
+            updateTimerDisplay();
+
+            // Prevent popup from running if no speakers
+            if (speakerList.length === 0) lastAnnouncedSpeaker = null;
             updateSpeakerUI();
+
             showToast('Timer settings saved!');
         }
-
 
         // --- CATEGORY ORDER LOGIC ---
         function getListLines(id) {
@@ -708,33 +919,32 @@
         }
 
         function renderRevealedLists(lists) {
-            const totalNames = lists[0].length + lists[1].length + lists[2].length;
+            const t1 = document.getElementById('cat1Name').value || 'Cat 1';
+            const t2 = document.getElementById('cat2Name').value || 'Cat 2';
+            const t3 = document.getElementById('cat3Name').value || 'Cat 3';
 
-            document.getElementById('col1Title').textContent = document.getElementById('cat1Name').value || 'Category A (SD)';
-            document.getElementById('col2Title').textContent = document.getElementById('cat2Name').value || 'Category B (SMP)';
-            document.getElementById('col3Title').textContent = document.getElementById('cat3Name').value || 'Category C (SMA)';
+            document.getElementById('col1Title').textContent = t1;
+            document.getElementById('col2Title').textContent = t2;
+            document.getElementById('col3Title').textContent = t3;
 
-            const cols = ['col1List', 'col2List', 'col3List'];
-            const dots = ['bg-brand-blue', 'bg-brand-orange', 'bg-brand-green'];
-
+            let totalNames = 0;
             lists.forEach((list, i) => {
-                const listContainer = document.getElementById(cols[i]);
-                if(!listContainer) return;
-                
-                listContainer.innerHTML = ''; 
-                
-                // Denser UI to fit 10+ items easily on Chromebooks
+                totalNames += list.length;
+                const listContainer = document.getElementById(`col${i + 1}List`);
+                listContainer.innerHTML = '';
                 list.forEach((name, idx) => {
                     const card = document.createElement('div');
-                    card.className = `card-neo p-1.5 md:p-2 flex items-center gap-1.5 md:gap-2 border-2 border-brand-dark dark:border-slate-500 shrink-0`;
+                    card.className = "flex items-center gap-2 p-2 bg-white dark:bg-slate-800 border-2 border-brand-dark dark:border-slate-500 rounded-lg shadow-neo-sm hover:translate-x-1 transition-transform shrink-0";
                     card.innerHTML = `
-                        <div class="w-5 h-5 md:w-6 md:h-6 rounded-full ${dots[i]} text-white flex items-center justify-center font-bold text-[9px] md:text-[10px] shrink-0">${idx + 1}</div>
-                        <div class="font-heading font-bold text-xs md:text-sm text-brand-dark dark:text-white truncate leading-tight">${escapeHtml(name)}</div>
+                        <div class="flex-shrink-0 w-6 h-6 md:w-7 md:h-7 rounded-full bg-slate-100 dark:bg-slate-700 border border-slate-300 dark:border-slate-500 flex items-center justify-center font-heading font-bold text-[10px] md:text-xs text-slate-500 dark:text-slate-400">
+                            ${idx + 1}
+                        </div>
+                        <div class="font-bold text-sm md:text-base truncate leading-tight">${escapeHtml(name)}</div>
                     `;
                     listContainer.appendChild(card);
                 });
             });
-            
+
             document.getElementById('totalCount').textContent = totalNames;
             document.getElementById('inputStage').classList.add('hidden');
             document.getElementById('revealStage').classList.remove('hidden');
@@ -744,18 +954,16 @@
             const l1 = getListLines('cat1Input');
             const l2 = getListLines('cat2Input');
             const l3 = getListLines('cat3Input');
-
             const totalNames = l1.length + l2.length + l3.length;
+
             if (totalNames === 0) {
                 showToast('Please enter names in at least one category.', true);
                 return;
             }
 
             const lists = [shuffle(l1), shuffle(l2), shuffle(l3)];
-
             localStorage.setItem('speech_generatedLists', JSON.stringify(lists));
             localStorage.setItem('speech_isRevealed', 'true');
-
             renderRevealedLists(lists);
         }
 
@@ -763,14 +971,12 @@
             try {
                 const savedLists = JSON.parse(localStorage.getItem('speech_generatedLists'));
                 if (!savedLists) return;
-
                 const t1 = document.getElementById('cat1Name').value || 'Category A (SD)';
                 const t2 = document.getElementById('cat2Name').value || 'Category B (SMP)';
                 const t3 = document.getElementById('cat3Name').value || 'Category C (SMA)';
                 const titles = [t1, t2, t3];
-
                 let out = '🎤 Speech Order — English 1 Batam\n\n';
-                
+
                 savedLists.forEach((list, i) => {
                     if (list.length > 0) {
                         out += `** ${titles[i]} **\n`;
@@ -782,7 +988,7 @@
                 });
 
                 navigator.clipboard.writeText(out.trim()).then(() => showToast('Copied to clipboard!')).catch(() => showToast('Copy failed', true));
-            } catch(e) {
+            } catch (e) {
                 showToast('Copy failed', true);
             }
         }
@@ -798,69 +1004,49 @@
             document.getElementById('cat1Input').value = "Alice\nBob\nCharlie\nDiana\nEric\nFiona\nGeorge\nHarry\nIsabel\nJacob\nKaren";
             document.getElementById('cat2Input').value = "Ivy\nJack\nKelly\nLiam\nMia\nNoah\nOlivia\nPaul\nQuinn\nRyan";
             document.getElementById('cat3Input').value = "Peter\nQuinn\nRose\nSam\nTyler\nUma\nVictor\nWendy\nXavier\nYara\nZane\nAdam";
-            
             ['cat1Input', 'cat2Input', 'cat3Input'].forEach(id => {
                 const el = document.getElementById(id);
-                if(el) el.dispatchEvent(new Event('input'));
+                if (el) el.dispatchEvent(new Event('input'));
             });
-
             showToast('Demo names loaded');
         }
 
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-
-        function showToast(msg, isError=false) {
-            const existing = document.querySelector('.toast');
-            if (existing) existing.remove();
-            const t = document.createElement('div');
-            t.className = `toast fixed bottom-6 left-1/2 -translate-x-1/2 px-6 py-3 rounded-xl font-heading font-bold text-sm shadow-neo z-50 animate-pop flex items-center gap-2 border-3 border-brand-dark dark:border-slate-500 ${isError?'bg-brand-pink text-white':'bg-brand-green text-white'}`;
-            t.innerHTML = isError ? `<i data-lucide="alert-circle" class="w-5 h-5"></i> ${msg}` : `<i data-lucide="check" class="w-5 h-5"></i> ${msg}`;
-            document.body.appendChild(t);
-            if(window.lucide) lucide.createIcons();
-            setTimeout(() => { t.style.opacity='0'; t.style.transform='translate(-50%,20px)'; t.style.transition='all .3s'; setTimeout(()=>t.remove(),300); }, 3000);
-        }
-
-        function toggleTheme() {
-            const isDark = document.documentElement.classList.toggle('dark');
-            localStorage.setItem('theme_speech_randomizer', isDark?'dark':'light');
-        }
-
-
-        // --- SLIDES LOGIC (TOPIC TAB) ---
+        // --- TOPIC PRESENTATION LOGIC ---
         let savedSlides = [];
-        let currentPresentationIndex = -1;
+        let currentPresentationIndex = 0;
         let isTopicListVisible = false;
-
-        function toggleTopicVisibility() {
-            isTopicListVisible = !isTopicListVisible;
-            renderSlides();
-        }
 
         function loadSlides() {
             try {
-                savedSlides = JSON.parse(localStorage.getItem('speech_slides')) || [];
-                renderSlides();
+                const stored = localStorage.getItem('speech_slides');
+                if (stored) savedSlides = JSON.parse(stored);
+
+                const vis = localStorage.getItem('speech_topics_visible');
+                if (vis !== null) isTopicListVisible = vis === 'true';
             } catch (e) {
-                savedSlides = [];
+                console.error('Error loading slides', e);
             }
+            renderSlides();
         }
 
-        function openTopicModal() {
+        function openTopicModal(id = null) {
             clearSlideForm();
-            document.getElementById('topicModalTitle').textContent = 'Create Slide';
+            if (id) {
+                const slide = savedSlides.find(s => s.id === id);
+                if (slide) {
+                    document.getElementById('topicId').value = slide.id;
+                    document.getElementById('topicHeader').value = slide.header;
+                    document.getElementById('topicMotion').value = slide.motion;
+                }
+            }
             document.getElementById('topicModal').classList.remove('hidden');
         }
 
         function closeTopicModal() {
             document.getElementById('topicModal').classList.add('hidden');
-            clearSlideForm();
         }
 
-        function saveSlide() {
+        function saveTopic() {
             const idInput = document.getElementById('topicId').value;
             const header = document.getElementById('topicHeader').value.trim();
             const motion = document.getElementById('topicMotion').value.trim();
@@ -888,115 +1074,105 @@
             document.getElementById('topicMotion').value = '';
         }
 
+        function toggleTopicVisibility() {
+            isTopicListVisible = !isTopicListVisible;
+            localStorage.setItem('speech_topics_visible', isTopicListVisible);
+            renderSlides();
+        }
+
         function renderSlides() {
             const container = document.getElementById('slideList');
             const mainBtn = document.getElementById('mainShowTopicBtn');
             const warning = document.getElementById('noTopicWarning');
             const visibilityBtn = document.getElementById('toggleVisibilityBtn');
-            
-            if(!container) return;
-            
-            if(visibilityBtn) {
-                visibilityBtn.innerHTML = isTopicListVisible 
-                    ? '<i data-lucide="eye-off" class="w-3.5 h-3.5 md:w-4 md:h-4"></i> <span class="hidden sm:inline">Hide</span>'
-                    : '<i data-lucide="eye" class="w-3.5 h-3.5 md:w-4 md:h-4"></i> <span class="hidden sm:inline">Show</span>';
+
+            if (!container) return;
+
+            if (visibilityBtn) {
+                visibilityBtn.innerHTML = isTopicListVisible ? '<i data-lucide="eye-off" class="w-3.5 h-3.5 md:w-4 md:h-4"></i> <span class="hidden sm:inline">Hide</span>' : '<i data-lucide="eye" class="w-3.5 h-3.5 md:w-4 md:h-4"></i> <span class="hidden sm:inline">Show</span>';
             }
-            
+
             container.innerHTML = '';
-            
             if (savedSlides.length === 0) {
                 container.innerHTML = '<div class="text-slate-400 text-sm italic py-4">No slides saved yet. Click "Add Slide" above!</div>';
                 mainBtn.classList.add('opacity-50', 'cursor-not-allowed', 'pointer-events-none');
                 warning.classList.remove('hidden');
-                if(window.lucide) lucide.createIcons();
+                if (window.lucide) lucide.createIcons();
                 return;
             }
 
             mainBtn.classList.remove('opacity-50', 'cursor-not-allowed', 'pointer-events-none');
             warning.classList.add('hidden');
 
-            // Render sequentially 
             savedSlides.forEach((slide, index) => {
                 const el = document.createElement('div');
                 el.className = 'border-2 border-brand-dark dark:border-slate-600 rounded-xl p-3 flex flex-row items-center justify-between gap-4 bg-slate-50 dark:bg-slate-700/50 shrink-0';
-                
+
                 const displayMotion = isTopicListVisible ? escapeHtml(slide.motion || '') : '<span class="text-slate-400 dark:text-slate-500 tracking-widest text-lg md:text-xl">••••••••••••••••••••</span>';
 
                 el.innerHTML = `
                     <div class="flex-1 min-w-0">
-                        ${slide.header ? `<div class="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-wider mb-0.5">${escapeHtml(slide.header)}</div>` : ''}
-                        <div class="font-heading font-bold text-sm md:text-base text-brand-blue truncate">${displayMotion}</div>
+                        ${slide.header ? `<div class="text-xs font-bold text-brand-blue uppercase tracking-widest mb-1 truncate">${escapeHtml(slide.header)}</div>` : ''}
+                        <div class="font-bold text-sm md:text-base text-slate-700 dark:text-slate-200 line-clamp-2">${displayMotion}</div>
                     </div>
-                    <div class="flex gap-1.5 shrink-0">
-                        <button onclick="presentSlideByIndex(${index})" class="btn-neo bg-brand-green text-white w-8 h-8 flex items-center justify-center hover:bg-green-500 p-0"><i data-lucide="play" class="w-4 h-4 fill-current"></i></button>
-                        <button onclick="editSlide(${slide.id})" class="btn-neo bg-slate-200 dark:bg-slate-600 text-slate-700 dark:text-slate-200 w-8 h-8 flex items-center justify-center hover:bg-slate-300 p-0"><i data-lucide="pencil" class="w-4 h-4"></i></button>
-                        <button onclick="deleteSlide(${slide.id})" class="btn-neo bg-brand-pink text-white w-8 h-8 flex items-center justify-center hover:bg-pink-500 p-0"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                    <div class="flex gap-2 shrink-0">
+                        <button onclick="presentSlideByIndex(${index})" class="p-2 bg-brand-blue text-white rounded-lg hover:bg-blue-600 shadow-neo-sm border-2 border-brand-dark" title="Present this slide">
+                            <i data-lucide="play" class="w-4 h-4 fill-current"></i>
+                        </button>
+                        <button onclick="openTopicModal(${slide.id})" class="p-2 bg-slate-200 dark:bg-slate-600 text-slate-700 dark:text-slate-200 rounded-lg hover:bg-slate-300 shadow-neo-sm border-2 border-brand-dark dark:border-slate-500">
+                            <i data-lucide="edit-2" class="w-4 h-4"></i>
+                        </button>
+                        <button onclick="deleteTopic(${slide.id})" class="p-2 bg-brand-pink text-white rounded-lg hover:bg-pink-600 shadow-neo-sm border-2 border-brand-dark">
+                            <i data-lucide="trash-2" class="w-4 h-4"></i>
+                        </button>
                     </div>
                 `;
                 container.appendChild(el);
             });
-            if(window.lucide) lucide.createIcons();
+            if (window.lucide) lucide.createIcons();
         }
 
-        function editSlide(id) {
-            const slide = savedSlides.find(s => s.id == id);
-            if (!slide) return;
-            document.getElementById('topicId').value = slide.id;
-            document.getElementById('topicHeader').value = slide.header;
-            document.getElementById('topicMotion').value = slide.motion;
-            
-            document.getElementById('topicModalTitle').textContent = 'Edit Slide';
-            document.getElementById('topicModal').classList.remove('hidden');
+        function deleteTopic(id) {
+            if (confirm('Are you sure you want to delete this slide?')) {
+                savedSlides = savedSlides.filter(s => s.id !== id);
+                localStorage.setItem('speech_slides', JSON.stringify(savedSlides));
+                renderSlides();
+            }
         }
 
-        function deleteSlide(id) {
-            if(!confirm('Are you sure you want to delete this slide?')) return;
-            savedSlides = savedSlides.filter(s => s.id != id);
-            localStorage.setItem('speech_slides', JSON.stringify(savedSlides));
-            renderSlides();
-            showToast('Slide deleted');
-        }
-
-        // --- Presentation Overlay Navigation (With Animations) ---
+        // FULL SCREEN PRESENTATION LOGIC
         function presentSlideByIndex(index) {
-            if (savedSlides.length === 0 || index < 0 || index >= savedSlides.length) return;
-            
+            if (savedSlides.length === 0) return;
             currentPresentationIndex = index;
             const container = document.getElementById('slideContentContainer');
-            
-            // Setup Initial Content
+
             const slide = savedSlides[currentPresentationIndex];
             document.getElementById('displayHeader').textContent = slide.header || '';
             document.getElementById('displayMotion').textContent = slide.motion || '';
             document.getElementById('slideIndicator').textContent = `Slide ${currentPresentationIndex + 1} of ${savedSlides.length}`;
-            
-            // Clean classes and show modal
+
             container.className = 'flex flex-col items-center justify-center w-full max-w-6xl px-12 md:px-20 z-50 animate-pop';
             document.getElementById('presentationOverlay').classList.remove('hidden');
-            
-            // Attach listener
+
             document.addEventListener('keydown', handlePresentationKeys);
         }
 
         function updatePresentationView(direction = 'next') {
             if (currentPresentationIndex < 0 || currentPresentationIndex >= savedSlides.length) return;
-            
             const slide = savedSlides[currentPresentationIndex];
             const container = document.getElementById('slideContentContainer');
-            
-            // Slide OUT animation based on direction
+
             container.classList.remove('animate-pop', 'slide-in-right', 'slide-in-left');
             container.classList.add(direction === 'next' ? 'slide-out-left' : 'slide-out-right');
-            
-            // Wait for out animation to finish, then swap content and slide IN
+
             setTimeout(() => {
                 document.getElementById('displayHeader').textContent = slide.header || '';
                 document.getElementById('displayMotion').textContent = slide.motion || '';
                 document.getElementById('slideIndicator').textContent = `Slide ${currentPresentationIndex + 1} of ${savedSlides.length}`;
-                
+
                 container.classList.remove('slide-out-left', 'slide-out-right');
                 container.classList.add(direction === 'next' ? 'slide-in-right' : 'slide-in-left');
-            }, 250); // matches the 0.25s animation duration
+            }, 250);
         }
 
         function nextSlide() {
@@ -1013,18 +1189,17 @@
                 currentPresentationIndex--;
                 updatePresentationView('prev');
             } else {
-                showToast('Beginning of slides');
+                showToast('First slide');
             }
         }
 
         function stopPresentation() {
             document.getElementById('presentationOverlay').classList.add('hidden');
             document.removeEventListener('keydown', handlePresentationKeys);
-            currentPresentationIndex = -1;
         }
 
         function handlePresentationKeys(e) {
-            if (e.key === 'ArrowRight' || e.key === 'Space' || e.key === 'Enter') {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
                 nextSlide();
             } else if (e.key === 'ArrowLeft') {
                 prevSlide();
@@ -1033,30 +1208,13 @@
             }
         }
 
-
         // --- INITIALIZATION ---
-        window.addEventListener('DOMContentLoaded', () => {
-            // Restore categories text inputs from local storage
-            const inputs = ['cat1Name', 'cat2Name', 'cat3Name', 'cat1Input', 'cat2Input', 'cat3Input'];
-            inputs.forEach(id => {
-                const el = document.getElementById(id);
-                if (!el) return;
-                const savedValue = localStorage.getItem(`speech_${id}`);
-                if (savedValue !== null) {
-                    el.value = savedValue;
-                }
-                el.addEventListener('input', (e) => {
-                    localStorage.setItem(`speech_${id}`, e.target.value);
-                });
-            });
-
-            // Check if lists were already revealed in a previous session
+        document.addEventListener('DOMContentLoaded', () => {
+            // Restore revealed lists state
             if (localStorage.getItem('speech_isRevealed') === 'true') {
                 try {
-                    const savedLists = JSON.parse(localStorage.getItem('speech_generatedLists'));
-                    if (savedLists && savedLists.length === 3) {
-                        renderRevealedLists(savedLists);
-                    }
+                    const saved = JSON.parse(localStorage.getItem('speech_generatedLists'));
+                    if (saved) renderRevealedLists(saved);
                 } catch (e) {
                     console.error("Could not load generated lists", e);
                 }
@@ -1077,7 +1235,7 @@
             try {
                 const savedSpeakers = JSON.parse(localStorage.getItem('speech_speakerList'));
                 if (Array.isArray(savedSpeakers)) speakerList = savedSpeakers;
-            } catch(e) { /* ignore */ }
+            } catch (e) { /* ignore */ }
 
             const savedIdx = localStorage.getItem('speech_currentSpeakerIdx');
             if (savedIdx !== null) {
@@ -1087,10 +1245,11 @@
             // Load saved slides
             loadSlides();
 
-            if(window.lucide) lucide.createIcons();
-            updateTimerDisplay(); // initialize colors
-            updateSpeakerUI(); // initialize speaker display
+            if (window.lucide) lucide.createIcons();
+            updateTimerDisplay();
+            updateSpeakerUI();
         });
     </script>
 </body>
+
 </html>
