@@ -276,20 +276,33 @@
     </main>
 
     <!-- ==================== TAB: SPEAKER TIMER ==================== -->
-    <div id="viewTimer" class="hidden fixed top-16 md:top-20 inset-x-0 bottom-0 z-30 transition-colors duration-500 bg-brand-green flex flex-col items-center justify-between p-6">
+    <div id="viewTimer" class="hidden fixed top-16 md:top-20 inset-x-0 bottom-0 z-30 transition-colors duration-500 bg-brand-green flex flex-col items-center justify-between p-6 overflow-hidden">
         
         <!-- Settings Gear Button -->
         <button onclick="openTimerSettings()" class="absolute top-4 right-4 md:top-8 md:right-8 btn-neo bg-black/10 hover:bg-black/25 text-white border-transparent p-3 backdrop-blur-sm transition-all z-40">
             <i data-lucide="settings" class="w-6 h-6 md:w-8 md:h-8"></i>
         </button>
 
-        <!-- Header Image at the top (stage curtain valance) -->
-        <div class="z-20 shrink-0 -mt-6 -mx-6 w-[calc(100%+3rem)]">
+        <!-- Header Image (absolute overlay — does NOT participate in flex layout) -->
+        <div class="absolute top-0 left-0 right-0 z-[15] pointer-events-none">
             <img src="media/Header.png" alt="Stage Curtain Header" class="w-full h-auto block" />
         </div>
 
-        <!-- Centered Timer Content -->
-        <div class="flex-grow flex flex-col items-center justify-center z-20 py-4 w-full">
+        <!-- Speaker illustration at bottom right (absolute overlay) -->
+        <div class="absolute bottom-2 right-2 md:bottom-4 md:right-4 w-24 sm:w-36 md:w-48 lg:w-60 xl:w-72 z-10 pointer-events-none opacity-90 transition-all duration-300">
+            <img src="media/Speaker.png" alt="Speaker" class="w-full h-auto object-contain" />
+        </div>
+
+        <!-- Timer Content (the only flex children now) -->
+        <div class="flex-grow flex flex-col items-center justify-center z-20 w-full">
+            <!-- Current Speaker Name -->
+            <div id="speakerNameDisplay" class="font-heading font-bold text-2xl sm:text-3xl md:text-5xl lg:text-6xl text-white/95 drop-shadow-lg tracking-wide mb-2 md:mb-4 text-center transition-all duration-300 max-w-[90%] truncate" style="display:none;"></div>
+
+            <!-- Speaker Counter Badge -->
+            <div id="speakerCounterBadge" class="mb-3 md:mb-5 px-4 py-1.5 rounded-full bg-black/15 backdrop-blur-sm text-white font-heading font-bold text-xs md:text-sm tracking-widest uppercase" style="display:none;">
+                Speaker <span id="speakerCurrentNum">1</span> of <span id="speakerTotalNum">1</span>
+            </div>
+
             <div id="timeDisplay" class="text-[5.5rem] sm:text-[7.5rem] md:text-[12rem] lg:text-[16rem] font-heading font-bold tracking-widest tabular-nums text-white leading-none drop-shadow-2xl">
                 00:00
             </div>
@@ -299,45 +312,65 @@
         </div>
 
         <!-- Action Buttons at the bottom -->
-        <div class="w-full max-w-3xl flex gap-3 md:gap-6 px-4 z-40 mb-4 shrink-0 justify-center">
-            <button onclick="startTimer()" id="startBtn" class="flex-1 btn-neo bg-white text-slate-800 py-3.5 md:py-5 text-base md:text-2xl hover:bg-slate-100 flex items-center justify-center gap-2 border-transparent shadow-neo">
-                <i data-lucide="play" class="w-5 h-5 md:w-7 md:h-7 fill-current"></i> Start
-            </button>
-            <button onclick="pauseTimer()" class="flex-1 btn-neo bg-black/20 text-white py-3.5 md:py-5 text-base md:text-2xl hover:bg-black/30 flex items-center justify-center gap-2 border-transparent backdrop-blur-sm shadow-neo">
-                <i data-lucide="pause" class="w-5 h-5 md:w-7 md:h-7 fill-current"></i> Pause
-            </button>
-            <button onclick="resetTimer()" class="flex-1 btn-neo bg-black/20 text-white py-3.5 md:py-5 text-base md:text-2xl hover:bg-black/30 flex items-center justify-center gap-2 border-transparent backdrop-blur-sm shadow-neo">
-                <i data-lucide="square" class="w-5 h-5 md:w-7 md:h-7 fill-current"></i> Reset
-            </button>
-        </div>
+        <div class="w-full max-w-4xl flex flex-col gap-3 px-4 z-40 mb-4 shrink-0 items-center">
+            <!-- Speaker Navigation Row -->
+            <div id="speakerNavRow" class="flex gap-3 md:gap-4 w-full max-w-3xl justify-center" style="display:none;">
+                <button onclick="prevSpeaker()" class="flex-1 btn-neo bg-white/15 text-white py-2.5 md:py-3.5 text-sm md:text-xl hover:bg-white/25 flex items-center justify-center gap-2 border-transparent backdrop-blur-sm shadow-neo">
+                    <i data-lucide="chevron-left" class="w-5 h-5 md:w-6 md:h-6"></i> Prev
+                </button>
+                <button onclick="nextSpeaker()" class="flex-[2] btn-neo bg-white text-slate-800 py-2.5 md:py-3.5 text-sm md:text-xl hover:bg-slate-100 flex items-center justify-center gap-2 border-transparent shadow-neo">
+                    Next Speaker <i data-lucide="chevron-right" class="w-5 h-5 md:w-6 md:h-6"></i>
+                </button>
+            </div>
 
-        <!-- Speaker illustration at bottom right -->
-        <div class="absolute bottom-2 right-2 md:bottom-4 md:right-4 w-24 sm:w-36 md:w-48 lg:w-60 xl:w-72 z-10 pointer-events-none opacity-90 transition-all duration-300">
-            <img src="media/Speaker.png" alt="Speaker" class="w-full h-auto object-contain" />
+            <!-- Timer Control Row -->
+            <div class="flex gap-3 md:gap-6 w-full max-w-3xl justify-center">
+                <button onclick="startTimer()" id="startBtn" class="flex-1 btn-neo bg-white text-slate-800 py-3.5 md:py-5 text-base md:text-2xl hover:bg-slate-100 flex items-center justify-center gap-2 border-transparent shadow-neo">
+                    <i data-lucide="play" class="w-5 h-5 md:w-7 md:h-7 fill-current"></i> Start
+                </button>
+                <button onclick="pauseTimer()" class="flex-1 btn-neo bg-black/20 text-white py-3.5 md:py-5 text-base md:text-2xl hover:bg-black/30 flex items-center justify-center gap-2 border-transparent backdrop-blur-sm shadow-neo">
+                    <i data-lucide="pause" class="w-5 h-5 md:w-7 md:h-7 fill-current"></i> Pause
+                </button>
+                <button onclick="resetTimer()" class="flex-1 btn-neo bg-black/20 text-white py-3.5 md:py-5 text-base md:text-2xl hover:bg-black/30 flex items-center justify-center gap-2 border-transparent backdrop-blur-sm shadow-neo">
+                    <i data-lucide="square" class="w-5 h-5 md:w-7 md:h-7 fill-current"></i> Reset
+                </button>
+            </div>
         </div>
     </div>
 
 
     <!-- Timer Settings Modal -->
     <div id="timerModal" class="hidden fixed inset-0 z-[60] flex items-center justify-center modal-overlay p-4">
-        <div class="card-neo p-6 md:p-8 max-w-sm w-full bg-white dark:bg-slate-800 animate-pop">
+        <div class="card-neo p-6 md:p-8 max-w-md w-full bg-white dark:bg-slate-800 animate-pop max-h-[90vh] overflow-y-auto">
             <h3 class="font-heading font-bold text-xl md:text-2xl mb-6">Timer Settings</h3>
             
-            <div class="flex gap-4 mb-8">
+            <!-- Time per Speaker -->
+            <label class="block text-sm font-bold text-slate-500 mb-2">Time Per Speaker</label>
+            <div class="flex gap-4 mb-6">
                 <div class="flex-1">
-                    <label class="block text-sm font-bold text-slate-500 mb-2">Minutes</label>
+                    <label class="block text-xs font-bold text-slate-400 mb-1">Minutes</label>
                     <input type="number" id="settingMins" min="0" max="60" value="5" class="input-neo w-full text-center text-xl md:text-2xl" />
                 </div>
-                <div class="flex items-center text-2xl md:text-3xl font-bold pb-2">:</div>
+                <div class="flex items-center text-2xl md:text-3xl font-bold pt-4">:</div>
                 <div class="flex-1">
-                    <label class="block text-sm font-bold text-slate-500 mb-2">Seconds</label>
+                    <label class="block text-xs font-bold text-slate-400 mb-1">Seconds</label>
                     <input type="number" id="settingSecs" min="0" max="59" value="0" class="input-neo w-full text-center text-xl md:text-2xl" />
                 </div>
             </div>
 
+            <!-- Speaker List -->
+            <div class="mb-6">
+                <label class="block text-sm font-bold text-slate-500 mb-2">
+                    <i data-lucide="users" class="w-4 h-4 inline-block mr-1"></i>
+                    Speaker Order <span class="text-xs text-slate-400 font-semibold">(one per line)</span>
+                </label>
+                <textarea id="settingSpeakers" class="input-neo w-full text-sm md:text-base leading-relaxed resize-none" rows="8" placeholder="John Doe&#10;Jane Smith&#10;Alex Johnson&#10;...enter each speaker on a new line"></textarea>
+                <p class="text-xs text-slate-400 dark:text-slate-500 mt-1.5 font-semibold">Leave empty for a simple timer without speakers.</p>
+            </div>
+
             <div class="flex gap-3">
                 <button onclick="closeTimerSettings()" class="flex-1 btn-neo bg-slate-200 dark:bg-slate-600 text-slate-700 dark:text-slate-200 py-3">Cancel</button>
-                <button onclick="saveTimerSettings()" class="flex-1 btn-neo bg-brand-green text-white py-3">Save</button>
+                <button onclick="saveTimerSettings()" class="flex-[2] btn-neo bg-brand-green text-white py-3">Save</button>
             </div>
         </div>
     </div>
@@ -497,10 +530,12 @@
             event.target.value = '';
         }
 
-        // --- TIMER LOGIC (COUNT UP) ---
+        // --- TIMER LOGIC (COUNT UP with Speaker Order) ---
         let timerInterval;
         let timeElapsed = 0; 
         let maxTime = 300; 
+        let speakerList = [];       // Array of speaker name strings
+        let currentSpeakerIdx = 0;  // Currently active speaker index
 
         function updateTimerDisplay() {
             const mins = Math.floor(timeElapsed / 60).toString().padStart(2, '0');
@@ -528,6 +563,70 @@
             }
         }
 
+        function updateSpeakerUI() {
+            const nameEl = document.getElementById('speakerNameDisplay');
+            const badgeEl = document.getElementById('speakerCounterBadge');
+            const navRow = document.getElementById('speakerNavRow');
+            const curNum = document.getElementById('speakerCurrentNum');
+            const totalNum = document.getElementById('speakerTotalNum');
+
+            if (speakerList.length === 0) {
+                // No speakers — hide speaker UI
+                if(nameEl) nameEl.style.display = 'none';
+                if(badgeEl) badgeEl.style.display = 'none';
+                if(navRow) navRow.style.display = 'none';
+                return;
+            }
+
+            // Show speaker UI
+            if(nameEl) {
+                nameEl.style.display = '';
+                nameEl.textContent = speakerList[currentSpeakerIdx] || '';
+                // Pop animation on name change
+                nameEl.classList.remove('animate-pop');
+                void nameEl.offsetWidth; // force reflow
+                nameEl.classList.add('animate-pop');
+            }
+            if(badgeEl) {
+                badgeEl.style.display = '';
+            }
+            if(navRow) {
+                navRow.style.display = '';
+            }
+            if(curNum) curNum.textContent = currentSpeakerIdx + 1;
+            if(totalNum) totalNum.textContent = speakerList.length;
+        }
+
+        function nextSpeaker() {
+            if (speakerList.length === 0) return;
+            if (currentSpeakerIdx < speakerList.length - 1) {
+                currentSpeakerIdx++;
+                // Reset timer for the new speaker
+                clearInterval(timerInterval);
+                timeElapsed = 0;
+                updateTimerDisplay();
+                updateSpeakerUI();
+                localStorage.setItem('speech_currentSpeakerIdx', currentSpeakerIdx);
+            } else {
+                showToast('Last speaker reached!');
+            }
+        }
+
+        function prevSpeaker() {
+            if (speakerList.length === 0) return;
+            if (currentSpeakerIdx > 0) {
+                currentSpeakerIdx--;
+                // Reset timer for the new speaker
+                clearInterval(timerInterval);
+                timeElapsed = 0;
+                updateTimerDisplay();
+                updateSpeakerUI();
+                localStorage.setItem('speech_currentSpeakerIdx', currentSpeakerIdx);
+            } else {
+                showToast('First speaker!');
+            }
+        }
+
         function startTimer() {
             clearInterval(timerInterval);
             timerInterval = setInterval(() => {
@@ -550,7 +649,10 @@
             pauseTimer();
             document.getElementById('settingMins').value = Math.floor(maxTime / 60);
             document.getElementById('settingSecs').value = maxTime % 60;
+            // Populate speakers textarea
+            document.getElementById('settingSpeakers').value = speakerList.join('\n');
             document.getElementById('timerModal').classList.remove('hidden');
+            if(window.lucide) lucide.createIcons();
         }
 
         function closeTimerSettings() {
@@ -567,8 +669,22 @@
             
             localStorage.setItem('speech_maxTime', maxTime); 
 
+            // Parse speakers
+            const raw = document.getElementById('settingSpeakers').value.trim();
+            speakerList = raw ? raw.split(/\n/).map(n => n.trim()).filter(n => n.length > 0) : [];
+            localStorage.setItem('speech_speakerList', JSON.stringify(speakerList));
+
+            // Reset to first speaker
+            currentSpeakerIdx = 0;
+            localStorage.setItem('speech_currentSpeakerIdx', 0);
+
+            // Reset timer
+            clearInterval(timerInterval);
+            timeElapsed = 0;
+
             closeTimerSettings();
             updateTimerDisplay(); 
+            updateSpeakerUI();
             showToast('Timer settings saved!');
         }
 
@@ -957,11 +1073,23 @@
                 document.getElementById('settingSecs').value = s;
             }
 
+            // Restore speaker list
+            try {
+                const savedSpeakers = JSON.parse(localStorage.getItem('speech_speakerList'));
+                if (Array.isArray(savedSpeakers)) speakerList = savedSpeakers;
+            } catch(e) { /* ignore */ }
+
+            const savedIdx = localStorage.getItem('speech_currentSpeakerIdx');
+            if (savedIdx !== null) {
+                currentSpeakerIdx = Math.min(parseInt(savedIdx, 10) || 0, Math.max(0, speakerList.length - 1));
+            }
+
             // Load saved slides
             loadSlides();
 
             if(window.lucide) lucide.createIcons();
             updateTimerDisplay(); // initialize colors
+            updateSpeakerUI(); // initialize speaker display
         });
     </script>
 </body>
