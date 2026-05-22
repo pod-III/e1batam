@@ -781,33 +781,56 @@
             }
         }
 
+        // Add these two variables right above the function to track the timers
+        let cinematicTimeout1;
+        let cinematicTimeout2;
+
         function showCinematicSpeaker(name) {
             const overlay = document.getElementById('cinematicSpeakerOverlay');
             const nameEl = document.getElementById('cinematicSpeakerName');
 
-            nameEl.textContent = name;
+            // 1. Cancel any currently running animations from rapid clicking
+            clearTimeout(cinematicTimeout1);
+            clearTimeout(cinematicTimeout2);
+
+            // 2. Temporarily disable transitions to instantly reset the starting position
+            overlay.style.transition = 'none';
+            nameEl.style.transition = 'none';
+
+            overlay.classList.remove('opacity-100');
+            overlay.classList.add('opacity-0');
             overlay.style.display = 'flex';
 
-            // Force reflow
+            nameEl.classList.remove('scale-100', 'scale-110', 'opacity-100');
+            nameEl.classList.add('scale-50', 'opacity-0');
+
+            nameEl.textContent = name;
+
+            // Force the browser to register the reset before turning transitions back on
             void overlay.offsetWidth;
 
-            // Fade in overlay and scale up text
+            // Restore smooth CSS transitions
+            overlay.style.transition = '';
+            nameEl.style.transition = '';
+
+            // 3. Fade in and scale up the new name
             overlay.classList.remove('opacity-0');
             overlay.classList.add('opacity-100');
 
             nameEl.classList.remove('scale-50', 'opacity-0');
             nameEl.classList.add('scale-100', 'opacity-100');
 
-            // Hold for 1.5 seconds, then fade out
-            setTimeout(() => {
+            // 4. Schedule the fade-out, saving the timer IDs so we can cancel them if needed
+            cinematicTimeout1 = setTimeout(() => {
                 overlay.classList.remove('opacity-100');
                 overlay.classList.add('opacity-0');
 
                 nameEl.classList.remove('scale-100');
                 nameEl.classList.add('scale-110', 'opacity-0');
 
-                setTimeout(() => {
+                cinematicTimeout2 = setTimeout(() => {
                     overlay.style.display = 'none';
+                    // Reset classes
                     nameEl.classList.remove('scale-110', 'scale-100', 'opacity-100');
                     nameEl.classList.add('scale-50', 'opacity-0');
                 }, 500);
