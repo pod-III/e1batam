@@ -276,33 +276,44 @@
     </main>
 
     <!-- ==================== TAB: SPEAKER TIMER ==================== -->
-    <div id="viewTimer" class="hidden fixed top-16 md:top-20 inset-x-0 bottom-0 z-30 transition-colors duration-500 bg-brand-green">
-        <div class="flex flex-col items-center justify-center w-full h-full relative p-6">
-            
-            <button onclick="openTimerSettings()" class="absolute top-4 right-4 md:top-8 md:right-8 btn-neo bg-black/10 hover:bg-black/20 text-white border-transparent p-3 md:p-4 backdrop-blur-sm transition-all z-40">
-                <i data-lucide="settings" class="w-6 h-6 md:w-8 md:h-8"></i>
-            </button>
-            
-            <div class="flex flex-col items-center justify-center flex-1 w-full pb-20 md:pb-32">
-                <div id="timeDisplay" class="text-[6rem] sm:text-[9rem] md:text-[15rem] lg:text-[20rem] font-heading font-bold tracking-widest tabular-nums text-white leading-none drop-shadow-2xl">
-                    00:00
-                </div>
-                <div class="mt-4 md:mt-8 text-white/90 font-bold tracking-wide text-xl md:text-4xl drop-shadow-lg">
-                    Target: <span id="targetDisplay">05:00</span>
-                </div>
-            </div>
+    <div id="viewTimer" class="hidden fixed top-16 md:top-20 inset-x-0 bottom-0 z-30 transition-colors duration-500 bg-brand-green flex flex-col items-center justify-between p-6">
+        
+        <!-- Settings Gear Button -->
+        <button onclick="openTimerSettings()" class="absolute top-4 right-4 md:top-8 md:right-8 btn-neo bg-black/10 hover:bg-black/25 text-white border-transparent p-3 backdrop-blur-sm transition-all z-40">
+            <i data-lucide="settings" class="w-6 h-6 md:w-8 md:h-8"></i>
+        </button>
 
-            <div class="absolute bottom-6 md:bottom-12 left-1/2 -translate-x-1/2 flex gap-3 md:gap-6 w-full max-w-4xl px-4 z-40">
-                <button onclick="startTimer()" id="startBtn" class="flex-1 btn-neo bg-white text-slate-800 py-4 md:py-6 text-lg md:text-3xl hover:bg-slate-100 flex items-center justify-center gap-2 border-transparent shadow-2xl">
-                    <i data-lucide="play" class="w-6 h-6 md:w-8 md:h-8 fill-current"></i> Start
-                </button>
-                <button onclick="pauseTimer()" class="flex-1 btn-neo bg-black/20 text-white py-4 md:py-6 text-lg md:text-3xl hover:bg-black/30 flex items-center justify-center gap-2 border-transparent backdrop-blur-sm shadow-2xl">
-                    <i data-lucide="pause" class="w-6 h-6 md:w-8 md:h-8 fill-current"></i> Pause
-                </button>
-                <button onclick="resetTimer()" class="flex-1 btn-neo bg-black/20 text-white py-4 md:py-6 text-lg md:text-3xl hover:bg-black/30 flex items-center justify-center gap-2 border-transparent backdrop-blur-sm shadow-2xl">
-                    <i data-lucide="square" class="w-6 h-6 md:w-8 md:h-8 fill-current"></i> Reset
-                </button>
+        <!-- Header Image at the top (stage curtain valance) -->
+        <div class="z-20 shrink-0 -mt-6 -mx-6 w-[calc(100%+3rem)]">
+            <img src="media/Header.png" alt="Stage Curtain Header" class="w-full h-auto block" />
+        </div>
+
+        <!-- Centered Timer Content -->
+        <div class="flex-grow flex flex-col items-center justify-center z-20 py-4 w-full">
+            <div id="timeDisplay" class="text-[5.5rem] sm:text-[7.5rem] md:text-[12rem] lg:text-[16rem] font-heading font-bold tracking-widest tabular-nums text-white leading-none drop-shadow-2xl">
+                00:00
             </div>
+            <div class="mt-4 text-white/90 font-bold tracking-wide text-lg md:text-3xl drop-shadow-lg">
+                Target: <span id="targetDisplay">05:00</span>
+            </div>
+        </div>
+
+        <!-- Action Buttons at the bottom -->
+        <div class="w-full max-w-3xl flex gap-3 md:gap-6 px-4 z-40 mb-4 shrink-0 justify-center">
+            <button onclick="startTimer()" id="startBtn" class="flex-1 btn-neo bg-white text-slate-800 py-3.5 md:py-5 text-base md:text-2xl hover:bg-slate-100 flex items-center justify-center gap-2 border-transparent shadow-neo">
+                <i data-lucide="play" class="w-5 h-5 md:w-7 md:h-7 fill-current"></i> Start
+            </button>
+            <button onclick="pauseTimer()" class="flex-1 btn-neo bg-black/20 text-white py-3.5 md:py-5 text-base md:text-2xl hover:bg-black/30 flex items-center justify-center gap-2 border-transparent backdrop-blur-sm shadow-neo">
+                <i data-lucide="pause" class="w-5 h-5 md:w-7 md:h-7 fill-current"></i> Pause
+            </button>
+            <button onclick="resetTimer()" class="flex-1 btn-neo bg-black/20 text-white py-3.5 md:py-5 text-base md:text-2xl hover:bg-black/30 flex items-center justify-center gap-2 border-transparent backdrop-blur-sm shadow-neo">
+                <i data-lucide="square" class="w-5 h-5 md:w-7 md:h-7 fill-current"></i> Reset
+            </button>
+        </div>
+
+        <!-- Speaker illustration at bottom right -->
+        <div class="absolute bottom-2 right-2 md:bottom-4 md:right-4 w-24 sm:w-36 md:w-48 lg:w-60 xl:w-72 z-10 pointer-events-none opacity-90 transition-all duration-300">
+            <img src="media/Speaker.png" alt="Speaker" class="w-full h-auto object-contain" />
         </div>
     </div>
 
